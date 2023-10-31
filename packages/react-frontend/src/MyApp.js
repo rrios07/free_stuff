@@ -75,6 +75,9 @@ function MyApp() {
     <div className="container">
         <Table characterData={characters} 
 	        removeCharacter={removeOneCharacter} />
+	<p>
+	{'Username and password'}
+	</p>
         <Form handleSubmit={updateList} />
     </div>  
   )

@@ -1,20 +1,23 @@
 import mongoose from "mongoose";
 
+
+var validateEmail = function(email) {
+    var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    return re.test(email)
+};
+
 const UserSchema = new mongoose.Schema(
   {
-    name: {
+    username: {
       type: String,
       required: true,
       trim: true,
     },
-    job: {
+    email: {
       type: String,
       required: true,
       trim: true,
-      validate(value) {
-        if (value.length < 2)
-          throw new Error("Invalid job, must be at least 2 characters.");
-      },
+      validate: [validateEmail, 'email address must be valid'],  
     },
   },
   { collection: "users_list" }

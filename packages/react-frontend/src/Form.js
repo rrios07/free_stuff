@@ -4,41 +4,41 @@ import React, {useState} from 'react';
 function Form(props) {
   const [person, setPerson] = useState(
      {
-        name: "",
-        job: "",
+        username: "",
+        email: "",
      }
   );
 
   function handleChange(event) {
     const { name, value } = event.target;
-    if (name === "job")
+    if (name === "email")
       setPerson(
-        {name: person['name'], job: value}
+        {username: person['username'], email: value}
       );
     else     
       setPerson(
-        {name: value, job: person['job']}   
+        {username: value, email: person['email']}   
       );
   }
   function submitForm() {
     props.handleSubmit(person);
-    setPerson({name: '', job: ''});
+    setPerson({username: '', email: ''});
   }
   return (
     <form>
-      <label htmlFor="name">Name</label>
+      <label htmlFor="username">Username</label>
       <input
         type="text"
-        name="name"
-        _id="name"
-        value={person.name}
+        name="username"
+        _id="username"
+        value={person.username}
         onChange={handleChange} />
-      <label htmlFor="job">Job</label>
+      <label htmlFor="email">Email</label>
       <input
         type="text"
-        name="job"
-        _id="job"
-        value={person.job}
+        name="email"
+        _id="email"
+        value={person.email}
         onChange={handleChange} />
       <input type="button" value="Submit" onClick={submitForm} />
     </form>

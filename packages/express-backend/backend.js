@@ -15,9 +15,9 @@ app.get('/', (req, res) => {
 
 
 app.get('/users', (req, res) => {
-    const name = req.query.name;
-    const job = req.query.job;
-    funcs.getUsers(name, job)
+    const username = req.query.username;
+    const email = req.query.email;
+    funcs.getUsers(username, email)
        .then((result)=> {
 	  res.send(result);
        })
@@ -28,7 +28,6 @@ app.get('/users', (req, res) => {
     
 app.get('/users/:id', (req, res) => {
     const id = req.params['id']; //or req.params.id
-    //let result = findUserById(id); 
     funcs.findUserById(id)
        .then((result) => {
           if (result) {
@@ -46,19 +45,16 @@ app.get('/users/:id', (req, res) => {
 app.post('/users', (req, res) => {
     const userToAdd = req.body;
     console.log(userToAdd);
-    //userToAdd.id = genId().toString();
     funcs.addUser(userToAdd)
     .then((user)=>{
-       res.status(201).send(JSON.stringify(user));
+          res.status(201).send(JSON.stringify(user));
     })
     .catch((error) => {
+       res.status(403).send('invalid email.');
        console.log(error);
     })
 });
 
-//const findUserIndexById = (id) =>
-//    users['users_list']
-//        .findIndex( (user) => user['id'] === id);
 
 app.delete('/users/:id', (req, res) => {
     const id = req.params['id']; //or req.params.id
@@ -75,13 +71,7 @@ app.delete('/users/:id', (req, res) => {
        console.log(error);
     })
 
- //   let result = findUserIndexById(id); 
- //   if (result < 0) {
- //       res.status(404).send('Resource not found.');
- //   } else {
-	//users['users_list'].splice(result, 1);
- //       res.status(204).send();
-   // }
+
 });
 
 app.listen(port, () => {

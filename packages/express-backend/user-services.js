@@ -10,16 +10,16 @@ mongoose
   })
   .catch((error) => console.log(error));
 
-function getUsers(name, job) {
+function getUsers(username, email) {
   let promise;
-  if (name === undefined && job === undefined) {
+  if (username === undefined && email === undefined) {
     promise = userModel.find();
-  } else if (name && !job) {
-    promise = findUserByName(name);
-  } else if (job && !name) {
-    promise = findUserByJob(job);
+  } else if (username && !email) {
+    promise = findUserByName(username);
+  } else if (email && !username) {
+    promise = findUserByEmail(email);
   } else {
-    promise = findUserByNameAndJob(name, job);
+    promise = findUserByNameAndEmail(username, email);
   }
     
   return promise;
@@ -29,22 +29,23 @@ function findUserById(id) {
   return userModel.findById(id);
 }
 
+
 function addUser(user) {
   const userToAdd = new userModel(user);
   const promise = userToAdd.save();
   return promise;
 }
 
-function findUserByName(name) {
-  return userModel.find({ name: name });
+function findUserByName(username) {
+  return userModel.find({ username: username });
 }
 
-function findUserByJob(job) {
-  return userModel.find({ job: job });
+function findUserByEmail(email) {
+  return userModel.find({ email: email });
 }
 
-function findUserByNameAndJob(name, job) {
-  return userModel.find({ name: name, job: job });
+function findUserByNameAndEmail(username, email) {
+  return userModel.find({ username: username, email: email });
 }
 
 function deleteUserById(id) {
@@ -57,6 +58,6 @@ export default {
   getUsers,
   findUserById,
   findUserByName,
-  findUserByJob,
+  findUserByEmail,
   deleteUserById
 };
