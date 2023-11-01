@@ -31,9 +31,16 @@ function findUserById(id) {
 
 
 function addUser(user) {
+  console.log(user);
+  if(user.email.includes("calpoly.edu")){
+     user["student"] = true;
+  } else {
+     user["student"] = false;
+  } 
   const userToAdd = new userModel(user);
   const promise = userToAdd.save();
   return promise;
+
 }
 
 function findUserByName(username) {

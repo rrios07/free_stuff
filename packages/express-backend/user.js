@@ -6,7 +6,7 @@ var validateEmail = function(email) {
     return re.test(email)
 };
 
-const UserSchema = new mongoose.Schema(
+const StudUserSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -19,10 +19,15 @@ const UserSchema = new mongoose.Schema(
       trim: true,
       validate: [validateEmail, 'email address must be valid'],  
     },
+    student: {
+      type: Boolean,
+      required: true,
+      trim: true,
+    },
   },
   { collection: "users_list" }
 );
 
-const User = mongoose.model("User", UserSchema);
+const User = mongoose.model("User", StudUserSchema);
 
 export default User;
