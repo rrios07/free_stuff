@@ -2,8 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import Table from "./Table";
 import Form from './Form';
-import Post from './Post';
-
+import Post from './Post.js';
 
 function MyApp() {
   const [characters, setCharacters] = useState([]); 
