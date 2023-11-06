@@ -2,6 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import Table from "./Table";
 import Form from './Form';
+import Post from './Post';
 
 
 function MyApp() {
@@ -44,6 +45,18 @@ function MyApp() {
         })
   }
 
+  function submitPost(postData) {
+    const promise = fetch("Http://localhost:8000/posts", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(postData),
+    });
+
+    return promise;
+  }
+
   function deleteUser(index) {
     const person = characters[index]
     const promise = fetch(`Http://localhost:8000/users/${person._id}`, {
@@ -79,6 +92,12 @@ function MyApp() {
 	{'Username and password'}
 	</p>
         <Form handleSubmit={updateList} />
+
+  <p>
+	{'Make a Post'}
+	</p>
+        <Post postData={characters} 
+	        submitPost={submitPost} />
     </div>  
   )
 
