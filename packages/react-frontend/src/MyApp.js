@@ -3,6 +3,7 @@ import React, {useState, useEffect} from 'react';
 import Table from "./Table";
 import Form from './Form';
 import Post from './Post.js';
+import PostForm from './PostForm.js';
 
 function MyApp() {
   const [characters, setCharacters] = useState([]); 
@@ -97,6 +98,8 @@ function MyApp() {
 	</p>
         <Post postData={characters} 
 	        submitPost={submitPost} />
+
+        <PostForm handleSubmit={updateList} />
     </div>  
   )
 
