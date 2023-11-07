@@ -9,7 +9,7 @@ function PostForm(props) {
      }
   );
 
-  function handleChange(event) {
+  function handlePostChange(event) {
     const { name, value } = event.target;
     if (name === "iType")
       setPostInfo(
@@ -32,21 +32,21 @@ function PostForm(props) {
         name="Title"
         _id="Title"
         value={PostInfo.Title}
-        onChange={handleChange} />
+        onChange={handlePostChange} />
       <label htmlFor="Type">Type</label>
       <input
         type="text"
         name="Type"
         _id="Type"
         value={PostInfo.Type}
-        onChange={handleChange} />
+        onChange={handlePostChange} />
      <label htmlFor="Pickup">Pickup?</label>
       <input
         type="text"
         name="Pickup"
         _id="Pickup"
         value={PostInfo.Type}
-        onChange={handleChange} />
+        onChange={handlePostChange} />
       <input type="button" value="Post" onClick={submitPostForm} />
     </form>
   );
