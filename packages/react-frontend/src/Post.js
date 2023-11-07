@@ -19,8 +19,7 @@ function PostHeader() {
           <td>{row.user}</td>
           <td>{row.category}</td>
       <td>
-          <button onClick={() => 
-              props.PostBody(index)}>
+          <button>
               Post
           </button>
       </td>
