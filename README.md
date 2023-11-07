@@ -18,7 +18,8 @@ The coding style enforced by prettier is as follows:
 To Use Prettier with VSCode:
 
 1. Download the Prettier VSCode extension
-2. Go into the VSCode settings (CMD + , on Mac) and search for "Format on save" and check the corresponding box
-3. Restart VSCode
+2. Go into the VSCode settings (CMD + , on Mac) and search for "Formatter"
+3. Set prettier as the default formatter, and check the box allowing format on save
+4. Restart VSCode
 
 The editor should now format the file on save using the preferences stored in the .prettierrc file
