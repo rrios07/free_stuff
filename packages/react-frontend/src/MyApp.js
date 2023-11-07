@@ -2,6 +2,7 @@
 import React, {useState, useEffect} from 'react';
 import Table from "./Table";
 import Form from './Form';
+import Home from './HomePage.js';
 import Post from './Post.js';
 import PostForm from './PostForm.js';
 
@@ -86,6 +87,7 @@ function MyApp() {
   }
   return (
     <div className="container">
+        <Home/>
         <Table characterData={characters} 
 	        removeCharacter={removeOneCharacter} />
 	<p>
