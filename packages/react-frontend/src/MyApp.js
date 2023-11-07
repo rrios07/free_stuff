@@ -2,9 +2,12 @@
 import React, {useState, useEffect} from 'react';
 import Table from "./Table";
 import Form from './Form';
+import SearchBar from './SearchBar';
 
 
 function MyApp() {
+  const [query, setQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
   const [characters, setCharacters] = useState([]); 
 
   function fetchUsers() {
@@ -71,13 +74,38 @@ function MyApp() {
         console.log(error);
     })
   }
+
+  const handleSearch = async () => {
+    try {
+      const response = await fetch(`Http://localhost:8000/search?query=${query}`);
+      if (response.ok) {
+        const data = await response.json();
+        setSearchResults(data.results);
+      } else {
+        console.error('Search request failed:', response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error('An error occurred while fetching search results:', error);
+    }
+  }
+
   return (
     <div className="container">
+        <SearchBar onSearch={handleSearch} />
         <Table characterData={characters} 
 	        removeCharacter={removeOneCharacter} />
 	<p>
 	{'Username and password'}
 	</p>
+  {searchResults.length > 0 ? (
+      <ul>
+        {searchResults.map((result, index) => (
+          <li key={index}>{result}</li>
+        ))}
+      </ul>
+    ) : (
+      <p>No search results found.</p>
+    )}
         <Form handleSubmit={updateList} />
     </div>  
   )
