@@ -107,7 +107,6 @@ function MyApp() {
   return (
     <div className="container">
         <Home/>
-        <SearchBar onSearch={handleSearch} />
         <Table characterData={characters} 
 	        removeCharacter={removeOneCharacter} />
 	<p>
@@ -123,7 +122,7 @@ function MyApp() {
       <p>No search results found.</p>
     )}
         <Form handleSubmit={updateList} />
-
+        <SearchBar onSearch={handleSearch} />
   <p>
 	{'Make a Post'}
 	</p>
