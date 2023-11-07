@@ -96,7 +96,7 @@ function MyApp() {
   <p>
 	{'Make a Post'}
 	</p>
-        <Post postData={characters} 
+        <Post postData={[]} 
 	        submitPost={submitPost} />
 
         <PostForm handleSubmit={updateList} />
