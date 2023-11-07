@@ -40,6 +40,13 @@ function PostForm(props) {
         _id="Type"
         value={PostInfo.Type}
         onChange={handleChange} />
+     <label htmlFor="Pickup">Pickup?</label>
+      <input
+        type="text"
+        name="Pickup"
+        _id="Pickup"
+        value={PostInfo.Type}
+        onChange={handleChange} />
       <input type="button" value="Post" onClick={submitPostForm} />
     </form>
   );
