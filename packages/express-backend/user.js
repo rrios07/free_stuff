@@ -11,15 +11,32 @@ const StudUserSchema = new mongoose.Schema(
             type: String,
             required: true,
             trim: true,
+            unique: true,
         },
         email: {
             type: String,
             required: true,
             trim: true,
             validate: [validateEmail, 'email address must be valid'],
+            unique: true,
         },
         student: {
             type: Boolean,
+            required: true,
+            trim: true,
+        },
+        name: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        address: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        zip: {
+            type: Number,
             required: true,
             trim: true,
         },

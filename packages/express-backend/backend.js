@@ -19,7 +19,12 @@ app.get('/users', (req, res) => {
     funcs
         .getUsers(username, email)
         .then((result) => {
-            res.send(result)
+            if (result.length > 0) {
+                console.log(result)
+                res.send(result)
+            } else {
+                res.status(404).send('Resource not found.')
+            }
         })
         .catch((error) => {
             console.log(error)
@@ -32,6 +37,7 @@ app.get('/users/:id', (req, res) => {
         .findUserById(id)
         .then((result) => {
             if (result) {
+                console.log(result)
                 res.send(result)
             } else {
                 res.status(404).send('Resource not found.')
@@ -51,7 +57,11 @@ app.post('/users', (req, res) => {
             res.status(201).send(JSON.stringify(user))
         })
         .catch((error) => {
-            res.status(403).send('invalid email.')
+            if (error.code == 11000) {
+                res.status(409).send('email or username already exists.')
+            } else {
+                res.status(403).send('invalid email.')
+            }
             console.log(error)
         })
 })
