@@ -1,7 +1,11 @@
 // src/CreateuserForm.js
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 
 function Form(props) {
+    const userRef = useRef(null)
+    const emailRef = useRef(null)
+    const [err, setErr] = useState(false)
+
     const [person, setPerson] = useState({
         username: '',
         email: '',
@@ -21,7 +25,16 @@ function Form(props) {
             })
     }
     function submitForm() {
-        props.handleSubmit(person)
+        if (
+            userRef.current.value.trim() === '' ||
+            userRef.current.value.trim() === ''
+        ) {
+            console.log('A field is empty')
+            setErr(true)
+        } else {
+            setErr(false)
+            props.handleSubmit(person)
+        }
         setPerson({ username: '', email: '' })
     }
     return (
@@ -32,6 +45,7 @@ function Form(props) {
                     type="text"
                     name="username"
                     _id="username"
+                    ref={userRef}
                     value={person.username}
                     onChange={handleChange}
                     style={{ width: 300 }}
@@ -41,6 +55,7 @@ function Form(props) {
                     type="text"
                     name="email"
                     _id="email"
+                    ref={emailRef}
                     value={person.email}
                     onChange={handleChange}
                     style={{ width: 300 }}
@@ -51,6 +66,9 @@ function Form(props) {
                     style={{ background: '#04aa6d' }}
                     onClick={submitForm}
                 />
+                {err && (
+                    <p style={{ color: 'red' }}> Both fields must be filled.</p>
+                )}
             </center>
         </form>
     )

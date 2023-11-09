@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react'
 import Form from './SignInForm'
 
-var found = true
-
 function SignIn() {
+    const [found, setFound] = useState(true)
+
     function getUser(person) {
         const promise = fetch(
             `Http://localhost:8000/users?username=${person.username}&email=${person.email}`
@@ -14,13 +14,15 @@ function SignIn() {
 
     function login(person) {
         getUser(person)
-            .then((res) => (res.status === 201 ? res.json() : undefined))
+            .then((res) => (res.status === 200 ? res.json() : undefined))
             .then((json) => {
                 if (json) {
-                    found = true
+                    console.log('account found')
+                    setFound(true)
                 } else {
                     //404 error
-                    found = false
+                    console.log('account not found')
+                    setFound(false)
                 }
             })
             .catch((error) => {
@@ -33,7 +35,14 @@ function SignIn() {
                 <h1>Login</h1>
             </center>
             <Form handleSubmit={login} />
-            {!found && <p> Incorrect username or email.</p>}
+            {!found && (
+                <center>
+                    <p style={{ color: 'red' }}>
+                        {' '}
+                        Incorrect username or email.
+                    </p>
+                </center>
+            )}
         </div>
     )
 }
