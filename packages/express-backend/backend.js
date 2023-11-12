@@ -31,6 +31,42 @@ app.get('/users', (req, res) => {
         })
 })
 
+app.get('/users/:username', (req, res) => {
+    const uname = req.params['username'] //or req.params.id
+    const email = req.query.email
+    if (email === undefined) {
+        funcs
+            .findUserByName(uname)
+            .then((result) => {
+                if (result.length > 0) {
+                    console.log(result)
+                    res.send(result)
+                } else {
+                    res.status(404).send('User not found.')
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    } else {
+        //querying for an account at sign in
+        funcs
+            .findUserByNameAndEmail(uname, email)
+            .then((result) => {
+                if (result.length > 0) {
+                    console.log(result)
+                    res.send(result)
+                    //TODO: send an email here
+                } else {
+                    res.status(404).send('User not found.')
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+})
+
 app.get('/users/:id', (req, res) => {
     const id = req.params['id'] //or req.params.id
     funcs

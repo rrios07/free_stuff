@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 import userModel from './user.js'
-import dotenv from "dotenv"
+import dotenv from 'dotenv'
 
 dotenv.config()
 console.log(process.env.MONGODB_URI)
@@ -67,4 +67,5 @@ export default {
     findUserByName,
     findUserByEmail,
     deleteUserById,
+    findUserByNameAndEmail,
 }

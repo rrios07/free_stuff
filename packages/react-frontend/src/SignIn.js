@@ -7,7 +7,7 @@ function SignIn() {
 
     function getUser(person) {
         const promise = fetch(
-            `Http://localhost:8000/users?username=${person.username}&email=${person.email}`
+            `Http://localhost:8000/users/${person.username}?email=${person.email}`
         )
         return promise
     }
@@ -19,6 +19,7 @@ function SignIn() {
                 if (json) {
                     console.log('account found')
                     setFound(true)
+                    //TODO in Sprint 3: redirect to a new page for email verification
                 } else {
                     //404 error
                     console.log('account not found')
