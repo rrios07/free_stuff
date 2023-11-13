@@ -3,7 +3,6 @@ import userModel from './user.js'
 import dotenv from 'dotenv'
 
 dotenv.config()
-console.log(process.env.MONGODB_URI)
 mongoose.set('debug', true)
 
 mongoose

@@ -2,9 +2,27 @@
 import express from 'express'
 import cors from 'cors'
 import funcs from './user-services.js'
+import dotenv from 'dotenv'
+import nodemailer from 'nodemailer'
 
 const app = express()
 const port = 8000
+//const nodemailer = require('nodemailer')
+
+dotenv.config()
+
+const config = {
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false,
+    auth: {
+        user: 'freestuffslo307@gmail.com',
+        pass: process.env.GMAIL_PASS,
+    },
+}
+
+const transporter = nodemailer.createTransport(config)
 
 app.use(cors())
 app.use(express.json())
@@ -31,9 +49,11 @@ app.get('/users', (req, res) => {
         })
 })
 
+//this may have additional future use, but is currently just for signing in
 app.get('/users/:username', (req, res) => {
     const uname = req.params['username'] //or req.params.id
     const email = req.query.email
+    var val = undefined
     if (email === undefined) {
         funcs
             .findUserByName(uname)
@@ -55,8 +75,22 @@ app.get('/users/:username', (req, res) => {
             .then((result) => {
                 if (result.length > 0) {
                     console.log(result)
-                    res.send(result)
                     //TODO: send an email here
+                    val = Math.floor(1000 + Math.random() * 9000).toString()
+                    const data = {
+                        from: 'freestuffslo307@gmail.com',
+                        to: email,
+                        subject: 'Free Stuff SLO One Time Sign In Code',
+                        text: val,
+                    }
+                    return transporter.sendMail(data)
+                } else {
+                    return undefined
+                }
+            })
+            .then((result) => {
+                if (result) {
+                    res.status(200).send(val)
                 } else {
                     res.status(404).send('User not found.')
                 }
