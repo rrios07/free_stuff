@@ -1,17 +1,22 @@
-// src/MyApp.js
+// src/SignUp.js
 import React, { useState, useEffect } from 'react'
 import Table from './Table'
 import Form from './CreateUserForm'
-import Home from './HomePage.js'
-import Post from './Post.js'
-import PostForm from './PostForm.js'
-import SearchBar from './SearchBar'
 
-function MyApp() {
-    const [query, setQuery] = useState('')
-    const [searchResults, setSearchResults] = useState([])
+function SignUp() {
     const [characters, setCharacters] = useState([])
 
+    function postUser(person) {
+        const promise = fetch('Http://localhost:8000/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(person),
+        })
+
+        return promise
+    }
     function fetchUsers() {
         const promise = fetch('http://localhost:8000/users')
         return promise
@@ -26,18 +31,6 @@ function MyApp() {
             })
     }, [])
 
-    function postUser(person) {
-        const promise = fetch('Http://localhost:8000/users', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(person),
-        })
-
-        return promise
-    }
-
     function updateList(person) {
         postUser(person)
             .then((res) => (res.status === 201 ? res.json() : undefined))
@@ -47,18 +40,6 @@ function MyApp() {
             .catch((error) => {
                 console.log(error)
             })
-    }
-
-    function submitPost(postData) {
-        const promise = fetch('Http://localhost:8000/posts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(postData),
-        })
-
-        return promise
     }
 
     function deleteUser(index) {
@@ -91,28 +72,22 @@ function MyApp() {
 
     return (
         <div className="container">
-            <Home />
+            <center>
+                <h1>Create Account</h1>
+            </center>
+            <h2 align="right">
+                <button type="button" style={{ background: '#04aa6d' }}>
+                    Home
+                </button>
+            </h2>
             <Table
                 characterData={characters}
                 removeCharacter={removeOneCharacter}
             />
-            <p>{'Username and password'}</p>
-            {searchResults.length > 0 ? (
-                <ul>
-                    {searchResults.map((result, index) => (
-                        <li key={index}>{result}</li>
-                    ))}
-                </ul>
-            ) : (
-                <p>No search results found.</p>
-            )}
+
             <Form handleSubmit={updateList} />
-            <SearchBar onSearch={handleSearch} />
-            <p>{'Make a Post'}</p>
-            <Post postData={[]} submitPost={submitPost} />
-            <PostForm handleSubmit={updateList} />
         </div>
     )
 }
 
-export default MyApp
+export default SignUp
