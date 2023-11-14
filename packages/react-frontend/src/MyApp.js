@@ -107,7 +107,7 @@ function MyApp() {
                 <p>No search results found.</p>
             )}
             <Form handleSubmit={updateList} />
-            <SearchBar onSearch={handleSearch} />
+            <SearchBar onSearch={SearchBar.handleSearch} />
             <p>{'Make a Post'}</p>
             <Post postData={[]} submitPost={submitPost} />
             <PostForm handleSubmit={updateList} />
