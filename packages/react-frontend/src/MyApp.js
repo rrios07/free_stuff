@@ -75,23 +75,9 @@ function MyApp() {
     })
   }
 
-  const handleSearch = async () => {
-    try {
-      const response = await fetch(`Http://localhost:8000/search?query=${query}`);
-      if (response.ok) {
-        const data = await response.json();
-        setSearchResults(data.results);
-      } else {
-        console.error('Search request failed:', response.status, response.statusText);
-      }
-    } catch (error) {
-      console.error('An error occurred while fetching search results:', error);
-    }
-  }
-
   return (
     <div className="container">
-        <SearchBar onSearch={handleSearch} />
+        <SearchBar onSearch={SearchBar.handleSearch} />
         <Table characterData={characters} 
 	        removeCharacter={removeOneCharacter} />
 	<p>
