@@ -114,8 +114,16 @@ function MyApp() {
 
     return (
         <div className="container">
-            <Home />
-            <Table
+            <Home 
+                Home={<SearchBar onSearch={SearchBar.handleSearch} />}
+                Post={<div>
+                        <Post postData={[]} submitPost={submitPost} />
+                        <PostForm handleSubmit={updateList} />
+                    </div>}
+                SignUp={<Form handleSubmit={updateList} />}
+                
+            />
+            {/* <Table
                 characterData={characters}
                 removeCharacter={removeOneCharacter}
             />
@@ -129,12 +137,7 @@ function MyApp() {
             ) : (
                 <p>No search results found.</p>
             )}
-            <Form handleSubmit={updateList} />
-            <SearchBar onSearch={handleSearch} />
-            <p>{'Make a Post'}</p>
-            <Post postData={[]} submitPost={submitPost} />
-
-            <PostForm handleSubmit={updateList} />
+            <p>{'Make a Post'}</p> */}
         </div>
     )
 }
