@@ -7,7 +7,7 @@ function SignUp() {
     const [characters, setCharacters] = useState([])
 
     function postUser(person) {
-        const promise = fetch('Http://localhost:8000/users', {
+        const promise = fetch('Http://free-stuff-slo.azurewebsites.net/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,7 +18,7 @@ function SignUp() {
         return promise
     }
     function fetchUsers() {
-        const promise = fetch('http://localhost:8000/users')
+        const promise = fetch('http://free-stuff-slo.azurewebsites.net/users')
         return promise
     }
 
@@ -44,13 +44,16 @@ function SignUp() {
 
     function deleteUser(index) {
         const person = characters[index]
-        const promise = fetch(`Http://localhost:8000/users/${person._id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(person),
-        })
+        const promise = fetch(
+            `Http://free-stuff-slo.azurewebsites.net/users/${person._id}`,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(person),
+            }
+        )
 
         return promise
     }

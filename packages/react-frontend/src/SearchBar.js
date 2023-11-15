@@ -7,7 +7,7 @@ function SearchBar() {
     const handleSearch = async () => {
         try {
             const response = await fetch(
-                `Http://localhost:8000/search?query=${query}`
+                `Http://free-stuff-slo.azurewebsites.net/search?query=${query}`
             )
             if (response.ok) {
                 const data = await response.json()
