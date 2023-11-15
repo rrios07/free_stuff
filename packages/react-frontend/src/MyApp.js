@@ -91,14 +91,15 @@ function MyApp() {
 
     return (
         <div className="container">
-            <Home 
+            <Home
                 Home={<SearchBar onSearch={SearchBar.handleSearch} />}
-                Post={<div>
+                Post={
+                    <div>
                         <Post postData={[]} submitPost={submitPost} />
                         <PostForm handleSubmit={updateList} />
-                    </div>}
+                    </div>
+                }
                 SignUp={<Form handleSubmit={updateList} />}
-                
             />
             {/* <Table
                 characterData={characters}
