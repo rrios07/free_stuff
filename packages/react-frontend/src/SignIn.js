@@ -7,7 +7,7 @@ function SignIn() {
 
     function getUser(person) {
         const promise = fetch(
-            `Http://free-stuff-slo.azurewebsites.net/users/${person.username}?email=${person.email}`
+            `Https://free-stuff-slo.azurewebsites.net/users/${person.username}?email=${person.email}`
         )
         return promise
     }

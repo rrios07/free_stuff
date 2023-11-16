@@ -13,7 +13,7 @@ function MyApp() {
     const [characters, setCharacters] = useState([])
 
     function fetchUsers() {
-        const promise = fetch('http://free-stuff-slo.azurewebsites.net/users')
+        const promise = fetch('https://free-stuff-slo.azurewebsites.net/users')
         return promise
     }
 
@@ -27,13 +27,16 @@ function MyApp() {
     }, [])
 
     function postUser(person) {
-        const promise = fetch('Http://free-stuff-slo.azurewebsites.net/users', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(person),
-        })
+        const promise = fetch(
+            'Https://free-stuff-slo.azurewebsites.net/users',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(person),
+            }
+        )
 
         return promise
     }
@@ -50,13 +53,16 @@ function MyApp() {
     }
 
     function submitPost(postData) {
-        const promise = fetch('Http://free-stuff-slo.azurewebsites.net/posts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(postData),
-        })
+        const promise = fetch(
+            'Https://free-stuff-slo.azurewebsites.net/posts',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(postData),
+            }
+        )
 
         return promise
     }
