@@ -1,33 +1,45 @@
 // src/HomePage.js
+import SearchBar from './SearchBar'
+import { useNavigate } from 'react-router-dom';
 
-function SearchBar() {
-    return (
-        <form
-            style={{
-                display: 'flex',
-                width: '60%',
-                'align-items': 'center',
-            }}
-        >
-            <input type="text" placeholder="Search.." name="search" />
-            <button> </button>
-        </form>
-    )
-}
+// function SearchBar() {
+//   return (
+//     <form
+//       style={{
+//         display: 'flex',
+//         width: '60%',
+//         'align-items': 'center',
+//       }}
+//     >
+//       <input type="text" placeholder="Search.." name="search" />
+//       <button> </button>
+//     </form>
+//   )
+// }
 
 function FunctionButton(props) {
     const val = props.val
+    const navigate = useNavigate();
+
+    const handleClick = async () => {
+        navigate(`/`)
+    }
+
     return (
         <a
             style={{
                 color: 'black',
                 padding: '15px 15px',
-                'text-decoration': 'none',
-                'font-size': '25px',
+                'textDecoration': 'none',
+                'fontSize': '25px',
+                'fontWeight': 'bold',
             }}
-            href={'#' + val}
         >
-            {val}
+            <button style={{ backgroundColor: 'grey', color: 'white', fontSize: '16px' }}
+                onClick={handleClick}
+            >
+                {val}
+            </button>
         </a>
     )
 }
@@ -35,7 +47,7 @@ function FunctionButton(props) {
 function FunctionBar() {
     return (
         <div>
-            <SearchBar />
+            <SearchBar onSearch={SearchBar} />
             <div
                 style={{
                     float: 'right',
@@ -46,7 +58,7 @@ function FunctionBar() {
             </div>
             <div
                 style={{
-                    'background-color': '#e9e9e9',
+                    'backgroundColor': '#e9e9e9',
                     width: '100%',
                 }}
             >

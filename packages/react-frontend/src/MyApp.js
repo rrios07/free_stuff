@@ -97,17 +97,7 @@ function MyApp() {
                 removeCharacter={removeOneCharacter}
             />
             <p>{'Username and password'}</p>
-            {searchResults.length > 0 ? (
-                <ul>
-                    {searchResults.map((result, index) => (
-                        <li key={index}>{result}</li>
-                    ))}
-                </ul>
-            ) : (
-                <p>No search results found.</p>
-            )}
             <Form handleSubmit={updateList} />
-            <SearchBar onSearch={SearchBar.handleSearch} />
             <p>{'Make a Post'}</p>
             <Post postData={[]} submitPost={submitPost} />
             <PostForm handleSubmit={updateList} />
