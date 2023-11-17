@@ -1,6 +1,6 @@
 // src/HomePage.js
 import SearchBar from './SearchBar'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Form from './SignInForm'
 import SignIn from './SignIn'
@@ -11,13 +11,16 @@ import SearchResults from './SearchResults'
 function FunctionButton(props) {
     const val = props.val
     return (
-        <Link to={val} style={{
+        <Link
+            to={val}
+            style={{
                 color: 'black',
                 padding: '15px 15px',
-                'textDecoration': 'none',
-                'fontSize': '25px',
-            }}>
-                {val}
+                textDecoration: 'none',
+                fontSize: '25px',
+            }}
+        >
+            {val}
         </Link>
     )
 }
@@ -36,7 +39,7 @@ function HomeBody() {
             </div>
             <div
                 style={{
-                    'backgroundColor': '#e9e9e9',
+                    backgroundColor: '#e9e9e9',
                     width: '100%',
                 }}
             >
@@ -65,7 +68,7 @@ function Home(props) {
                 <SearchBar />
                 <div
                     style={{
-                        'backgroundColor': '#e9e9e9',
+                        backgroundColor: '#e9e9e9',
                         width: '100%',
                     }}
                 >

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 const SearchBar = () => {
     const [query, setQuery] = useState('')
@@ -19,13 +19,16 @@ const SearchBar = () => {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search..."
             />
-            <Link to={`/search/${query}`} style={{
-                color: 'black',
-                padding: '15px 15px',
-                'textDecoration': 'none',
-                'fontSize': '25px',
-            }}>
-                {"Search"}
+            <Link
+                to={`/search/${query}`}
+                style={{
+                    color: 'black',
+                    padding: '15px 15px',
+                    textDecoration: 'none',
+                    fontSize: '25px',
+                }}
+            >
+                {'Search'}
             </Link>
         </div>
     )
