@@ -102,8 +102,8 @@ function MyApp() {
             <Home
                 Post={
                     <div>
-                        <Post postData={[]} submitPost={submitPost} />
                         <PostForm handleSubmit={updateList} />
+                        <Post postData={[]} submitPost={submitPost} />
                     </div>
                 }
                 SignUp={<Form handleSubmit={updateList} />}

@@ -27,7 +27,7 @@ function PostForm(props) {
                 value={PostInfo.Title}
                 onChange={handlePostChange}
             />
-            <label htmlFor="Type">Type</label>
+            <label htmlFor="Type">Category</label>
             <input
                 type="text"
                 name="Type"
@@ -35,11 +35,21 @@ function PostForm(props) {
                 value={PostInfo.Type}
                 onChange={handlePostChange}
             />
-            <label htmlFor="Pickup">Pickup?</label>
+            <label htmlFor="Pickup">
+                Pickup / Delivery (P, D, B for both){' '}
+            </label>
             <input
                 type="text"
                 name="Pickup"
                 _id="Pickup"
+                value={PostInfo.Type}
+                onChange={handlePostChange}
+            />
+            <label htmlFor="Description">Description</label>
+            <input
+                type="text"
+                name="Desc"
+                _id="Desc"
                 value={PostInfo.Type}
                 onChange={handlePostChange}
             />
