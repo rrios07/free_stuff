@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import SearchBar from './SearchBar'
-import FunctionBar from './HomePage'
+// import HomeBody from './HomePage'
 
 
 const SearchResults = () => {
@@ -52,7 +52,6 @@ const SearchResults = () => {
 
 	return (
 		<div>
-			<FunctionBar />
 			<div>
 				<h2>Search Results for: {query}</h2>
 				{loading ? (

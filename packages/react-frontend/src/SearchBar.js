@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const SearchBar = () => {
     const [query, setQuery] = useState('')
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    const handleSearch = async () => {
-        if (query.trim() !== '') {
-            navigate(`/search/${query}`);
-        }
-    }
+    // const handleSearch = async () => {
+    //     if (query.trim() !== '') {
+    //         navigate('/search/${query}');
+    //     }
+    // }
 
     return (
         <div style={{ display: 'flex', alignItems: 'center' }}>
@@ -19,7 +19,14 @@ const SearchBar = () => {
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search..."
             />
-            <button onClick={handleSearch}>Search</button>
+            <Link to={`/search/${query}`} style={{
+                color: 'black',
+                padding: '15px 15px',
+                'textDecoration': 'none',
+                'fontSize': '25px',
+            }}>
+                {"Search"}
+            </Link>
         </div>
     )
 }

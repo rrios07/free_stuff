@@ -1,53 +1,31 @@
 // src/HomePage.js
 import SearchBar from './SearchBar'
 import { useNavigate } from 'react-router-dom';
-
-// function SearchBar() {
-//   return (
-//     <form
-//       style={{
-//         display: 'flex',
-//         width: '60%',
-//         'align-items': 'center',
-//       }}
-//     >
-//       <input type="text" placeholder="Search.." name="search" />
-//       <button> </button>
-//     </form>
-//   )
-// }
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import Form from './SignInForm'
+import SignIn from './SignIn'
+import Post from './Post'
+import PostForm from './PostForm'
+import SearchResults from './SearchResults'
 
 function FunctionButton(props) {
     const val = props.val
-    const navigate = useNavigate();
-
-    const handleClick = async () => {
-        navigate(`/`)
-    }
-
     return (
-        <a
-            style={{
+        <Link to={val} style={{
                 color: 'black',
                 padding: '15px 15px',
                 'textDecoration': 'none',
                 'fontSize': '25px',
-                'fontWeight': 'bold',
-            }}
-        >
-            <button style={{ backgroundColor: 'grey', color: 'white', fontSize: '16px' }}
-                onClick={handleClick}
-            >
+            }}>
                 {val}
-            </button>
-        </a>
+        </Link>
     )
 }
 
-function FunctionBar() {
+function HomeBody() {
     return (
         <div>
-            <SearchBar onSearch={SearchBar} />
+            <SearchBar />
             <div
                 style={{
                     float: 'right',
@@ -81,7 +59,41 @@ function FunctionBar() {
 }
 
 function Home(props) {
-    return <FunctionBar />
+    return (
+        <div>
+            <BrowserRouter>
+                <SearchBar />
+                <div
+                    style={{
+                        'backgroundColor': '#e9e9e9',
+                        width: '100%',
+                    }}
+                >
+                    <FunctionButton val="Home" />
+                    <FunctionButton val="Profile" />
+                    <FunctionButton val="Post" />
+                </div>
+
+                <div
+                    style={{
+                        float: 'right',
+                    }}
+                >
+                    <FunctionButton val="Sign In" />
+                    <FunctionButton val="Sign Up" />
+                </div>
+                <Routes>
+                    <Route path="Sign In" element={<SignIn />} />
+                    <Route path="Sign Up" element={props.SignUp} />
+                    <Route path="Home" element={props.Home} />
+                    <Route path="" element={props.Home} />
+                    {/* <Route path="Profile" element={<Profile />} /> */}
+                    <Route path="Post" element={props.Post} />
+                    <Route path="/search/:query" element={<SearchResults />} />
+                </Routes>
+            </BrowserRouter>
+        </div>
+    )
 }
 
 export default Home
