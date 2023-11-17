@@ -91,16 +91,15 @@ function MyApp() {
 
     return (
         <div className="container">
-            <Home />
-            <Table
-                characterData={characters}
-                removeCharacter={removeOneCharacter}
+            <Home
+                Post={
+                    <div>
+                        <Post postData={[]} submitPost={submitPost} />
+                        <PostForm handleSubmit={updateList} />
+                    </div>
+                }
+                SignUp={<Form handleSubmit={updateList} />}
             />
-            <p>{'Username and password'}</p>
-            <Form handleSubmit={updateList} />
-            <p>{'Make a Post'}</p>
-            <Post postData={[]} submitPost={submitPost} />
-            <PostForm handleSubmit={updateList} />
         </div>
     )
 }
