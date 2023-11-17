@@ -3,9 +3,10 @@ function PostHeader() {
     return (
         <thead>
             <tr>
+                {/* <th>User</th> */}
                 <th>Item</th>
                 <th>Category</th>
-                <th>User</th>
+                <th>Description</th>
             </tr>
         </thead>
     )
