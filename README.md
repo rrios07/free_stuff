@@ -1,5 +1,11 @@
-# free_stuff
+# free Stuff SLO App
+This is a simple web app to allow students and non-students in the SLO area to post any free items they would like to give away for free. 
+Our app only allows students to claim free items, but allows anyone to give items away. The goal of this app is to help college students
+find the essentials they need for free to remove stress from their lives, and to allow anyone to give back to the SLO community in a tractable
+and fulfilling way. This app is a work in progress, but this repo represents it's current state. A link to our continuously deployed application
+can be found here: 
 
+# Future Dev Info
 Setting Up Prettier:
 
 1. npm install prettier in the root directory of the project
