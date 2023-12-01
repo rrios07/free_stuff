@@ -9,6 +9,31 @@ function Profile(props) {
         navigate('../')
     }
 
+    function deleteUser(person) {
+        const promise = fetch(`http://localhost:8000/users/${person._id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(person),
+        })
+
+        return promise
+    }
+
+    function delAccount() {
+        const person = JSON.parse(localStorage.getItem('user'))[0]
+        deleteUser(person)
+            .then((res) => {
+                if (res.status === 204) {
+                    logOut()
+                }
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
     if (localStorage.getItem('user')) {
         let user = JSON.parse(localStorage.getItem('user'))[0]
         console.log(user)
@@ -44,6 +69,14 @@ function Profile(props) {
                     style={{ background: '#259e49' }}
                     onClick={logOut}
                 />
+                <p>
+                    <input
+                        type="button"
+                        value="Delete Account"
+                        style={{ background: '#d2042d' }}
+                        onClick={delAccount}
+                    />
+                </p>
             </div>
         )
     } else {

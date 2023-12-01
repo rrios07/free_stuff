@@ -12,21 +12,15 @@ function SignIn(props) {
     const [code, setCode] = useState('')
     const navigate = useNavigate()
 
-    // useEffect(() => {
-    //     if (redir) navigate('/auth')
-    // }, [setRedir])
-
     function getUser(person) {
         const promise = fetch(
-            `https://free-stuff-slo.azurewebsites.net/users/${person.username}?email=${person.email}`
+            `http://localhost:8000/users/${person.username}?email=${person.email}`
         )
         return promise
     }
 
     function getUserInfo(username) {
-        const promise = fetch(
-            `https://free-stuff-slo.azurewebsites.net/users/${username}`
-        )
+        const promise = fetch(`http://localhost:8000/users/${username}`)
         return promise
     }
 
