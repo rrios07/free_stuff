@@ -1,5 +1,6 @@
 // src/PostForm.js
 import React, { useState } from 'react'
+import CheckboxForm from './CheckboxForm.js'
 
 function PostForm(props) {
     const [PostInfo, setPostInfo] = useState({
@@ -13,13 +14,23 @@ function PostForm(props) {
             setPostInfo({ item: PostInfo['item'], iType: value })
         else setPostInfo({ item: value, iType: PostInfo['iType'] })
     }
+
+
+    const handleRadioChange = (e) => {
+        setPostInfo((prevData) => ({
+          ...prevData,
+          radioOption: e.target.value,
+        }))
+    }
+
     function submitPostForm() {
         props.handleSubmit(PostInfo)
         setPostInfo({ item: '', iType: '' })
     }
     return (
         <form>
-            <label htmlFor="Title">Item</label>
+            Create a new post
+            <label htmlFor="Title">Title</label>
             <input
                 type="text"
                 name="Title"
@@ -27,24 +38,39 @@ function PostForm(props) {
                 value={PostInfo.Title}
                 onChange={handlePostChange}
             />
-            <label htmlFor="Type">Category</label>
-            <input
-                type="text"
-                name="Type"
-                _id="Type"
-                value={PostInfo.Type}
-                onChange={handlePostChange}
-            />
-            <label htmlFor="Pickup">
-                Pickup / Delivery (P, D, B for both){' '}
-            </label>
-            <input
-                type="text"
-                name="Pickup"
-                _id="Pickup"
-                value={PostInfo.Type}
-                onChange={handlePostChange}
-            />
+            <label htmlFor="Categories">Categories</label>
+                {/* Include CheckboxForm as part of YourFormComponent */}
+                <CheckboxForm />
+            <div htmlFor="PickupDelivery">
+                Pickup and/or Delivery
+                <label>
+                    <input
+                        type="radio"
+                        value="option1"
+                        checked={PostInfo.radioOption === 'option1'}
+                        onChange={handleRadioChange}
+                    />
+                    Pickup
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        value="option2"
+                        checked={PostInfo.radioOption === 'option2'}
+                        onChange={handleRadioChange}
+                    />
+                    Delivery
+                </label>
+                <label>
+                    <input
+                        type="radio"
+                        value="option3"
+                        checked={PostInfo.radioOption === 'option3'}
+                        onChange={handleRadioChange}
+                    />
+                    Both
+                </label>
+            </div>
             <label htmlFor="Description">Description</label>
             <input
                 type="text"

@@ -1,32 +1,33 @@
-// src/SignUp.js
+// CreatePost.js
 import React, { useState, useEffect } from 'react'
 import Table from './Table'
-import Form from './CreateUserForm'
+import Form from './PostForm'
 
-function SignUp() {
-    const [characters, setCharacters] = useState([])
+function createPost() {
+	cosnt [characters, setCharacters] = useState([])
 
-    function postUser(person) {
-        const promise = fetch(
-            'http://localhost:8000/users',
+	function postPost(post) {
+		const promise = fetch(
+			'http://localhost:8000/posts',
             {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(person),
+                body: JSON.stringify(post),
             }
         )
 
         return promise
-    }
-    function fetchUsers() {
-        const promise = fetch('http://localhost:8000/users')
+	}
+
+	function fetchPosts() {
+		const promise = fetch('http://localhost:8000/posts')
         return promise
-    }
+	}
 
     useEffect(() => {
-        fetchUsers()
+        fetchPosts()
             .then((res) => res.json())
             .then((json) => setCharacters(json))
             .catch((error) => {
@@ -34,8 +35,8 @@ function SignUp() {
             })
     }, [])
 
-    function updateList(person) {
-        postUser(person)
+    function updateList(post) {
+        postPost(post)
             .then((res) => (res.status === 201 ? res.json() : undefined))
             .then((json) => {
                 if (json) setCharacters([...characters, json])
@@ -45,10 +46,10 @@ function SignUp() {
             })
     }
 
-    function deleteUser(index) {
-        const person = characters[index]
+    function deletePost(index) {
+        const post = characters[index]
         const promise = fetch(
-            `Https://free-stuff-slo.azurewebsites.net/users/${person._id}`,
+            `http://localhost:8000/posts/${post._id}`,
             {
                 method: 'DELETE',
                 headers: {
@@ -62,7 +63,7 @@ function SignUp() {
     }
 
     function removeOneCharacter(index) {
-        deleteUser(index)
+        deletePost(index)
             .then((res) => {
                 if (res.status === 204) {
                     const updated = characters.filter((character, i) => {
@@ -79,7 +80,7 @@ function SignUp() {
     return (
         <div className="container">
             <center>
-                <h1>Create Account</h1>
+                <h1>Create Post</h1>
             </center>
             <h2 align="right">
                 <button type="button" style={{ background: '#04aa6d' }}>
@@ -96,4 +97,4 @@ function SignUp() {
     )
 }
 
-export default SignUp
+export default CreatePost

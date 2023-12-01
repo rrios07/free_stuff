@@ -4,6 +4,7 @@ import cors from 'cors'
 import funcs from './user-services.js'
 import dotenv from 'dotenv'
 import nodemailer from 'nodemailer'
+import postFuncs from './post-services.js'
 
 const app = express()
 const port = 8000
@@ -157,6 +158,23 @@ app.get('/search', (req, res) => {
     const searchResults = ['Result 1', 'Result 2', 'Result 3'] // Replace with actual search results
 
     res.json({ results: searchResults })
+})
+
+app.get('/posts/:id', (req, res) => {
+    const id = req.params['id'] //or req.params.id
+    postFuncs
+        .findPostById(id)
+        .then((result) => {
+            if (result) {
+                console.log(result)
+                res.send(result)
+            } else {
+                res.status(404).send('Resource not found.')
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+        })
 })
 
 app.listen(process.env.PORT || port, () => {

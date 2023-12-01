@@ -12,7 +12,7 @@ function MyApp() {
     const [characters, setCharacters] = useState([])
 
     function fetchUsers() {
-        const promise = fetch('https://free-stuff-slo.azurewebsites.net/users')
+        const promise = fetch('http://localhost:8000/users')
         return promise
     }
 
@@ -27,7 +27,7 @@ function MyApp() {
 
     function postUser(person) {
         const promise = fetch(
-            'Https://free-stuff-slo.azurewebsites.net/users',
+            'http://localhost:8000/users',
             {
                 method: 'POST',
                 headers: {
@@ -53,7 +53,7 @@ function MyApp() {
 
     function submitPost(postData) {
         const promise = fetch(
-            'Https://free-stuff-slo.azurewebsites.net/posts',
+            'http://localhost:8000/posts',
             {
                 method: 'POST',
                 headers: {
@@ -69,7 +69,7 @@ function MyApp() {
     function deleteUser(index) {
         const person = characters[index]
         const promise = fetch(
-            `Http://free-stuff-slo.azurewebsites.net/users/${person._id}`,
+            `http://localhost:8000/users/${person._id}`,
             {
                 method: 'DELETE',
                 headers: {
