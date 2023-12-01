@@ -1,46 +1,35 @@
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
-function SearchBar() {
+const SearchBar = () => {
     const [query, setQuery] = useState('')
-    const [searchResults, setSearchResults] = useState([])
+    // const navigate = useNavigate();
 
-    const handleSearch = async () => {
-        try {
-            const response = await fetch(
-                `Https://free-stuff-slo.azurewebsites.net/search?query=${query}`
-            )
-            if (response.ok) {
-                const data = await response.json()
-                setSearchResults(data.results)
-            } else {
-                console.error(
-                    'Search request failed:',
-                    response.status,
-                    response.statusText
-                )
-            }
-        } catch (error) {
-            console.error(
-                'An error occurred while fetching search results:',
-                error
-            )
-        }
-    }
+    // const handleSearch = async () => {
+    //     if (query.trim() !== '') {
+    //         navigate('/search/${query}');
+    //     }
+    // }
 
     return (
-        <div>
+        <div style={{ display: 'flex', alignItems: 'center' }}>
             <input
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 placeholder="Search..."
             />
-            <button onClick={handleSearch}>Search</button>
-            <div>
-                {searchResults.map((result, index) => (
-                    <div key={index}>{result}</div>
-                ))}
-            </div>
+            <Link
+                to={`/search/${query}`}
+                style={{
+                    color: 'black',
+                    padding: '15px 15px',
+                    textDecoration: 'none',
+                    fontSize: '25px',
+                }}
+            >
+                {'Search'}
+            </Link>
         </div>
     )
 }

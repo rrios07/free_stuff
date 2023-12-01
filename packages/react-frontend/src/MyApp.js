@@ -5,7 +5,6 @@ import Form from './CreateUserForm'
 import Home from './HomePage.js'
 import Post from './Post.js'
 import PostForm from './PostForm.js'
-import SearchBar from './SearchBar'
 
 function MyApp() {
     const [query, setQuery] = useState('')
@@ -101,7 +100,6 @@ function MyApp() {
     return (
         <div className="container">
             <Home
-                Home={<SearchBar onSearch={SearchBar.handleSearch} />}
                 Post={
                     <div>
                         <PostForm handleSubmit={updateList} />
