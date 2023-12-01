@@ -1,14 +1,18 @@
 // src/SignUp.js
 import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Table from './Table'
 import Form from './CreateUserForm'
 
 function SignUp() {
     const [characters, setCharacters] = useState([])
+    const [invEmail, setInvEmail] = useState(false)
+    const [exists, setExists] = useState(false)
+    const navigate = useNavigate()
 
     function postUser(person) {
         const promise = fetch(
-            'Https://free-stuff-slo.azurewebsites.net/users',
+            'https://free-stuff-slo.azurewebsites.net/users',
             {
                 method: 'POST',
                 headers: {
@@ -36,9 +40,28 @@ function SignUp() {
 
     function updateList(person) {
         postUser(person)
-            .then((res) => (res.status === 201 ? res.json() : undefined))
+            .then((res) => {
+                if (res.status === 201) {
+                    return res.json()
+                } else if (res.status === 403) {
+                    return -1 //invalid email
+                } else {
+                    return -2 //account already exists
+                }
+            })
             .then((json) => {
-                if (json) setCharacters([...characters, json])
+                setInvEmail(false)
+                setExists(false)
+                if (json === -1) {
+                    console.log('invalid email')
+                    setInvEmail(true)
+                } else if (json === -2) {
+                    console.log('existing account')
+                    setExists(true)
+                } else {
+                    setCharacters([...characters, json])
+                    navigate('../Sign In')
+                }
             })
             .catch((error) => {
                 console.log(error)
@@ -81,17 +104,25 @@ function SignUp() {
             <center>
                 <h1>Create Account</h1>
             </center>
-            <h2 align="right">
-                <button type="button" style={{ background: '#04aa6d' }}>
-                    Home
-                </button>
-            </h2>
             <Table
                 characterData={characters}
                 removeCharacter={removeOneCharacter}
             />
 
             <Form handleSubmit={updateList} />
+            {invEmail && (
+                <center>
+                    <p style={{ color: 'red' }}> Invalid email account.</p>
+                </center>
+            )}
+            {exists && (
+                <center>
+                    <p style={{ color: 'red' }}>
+                        {' '}
+                        Username exists and/or email already linked to account.
+                    </p>
+                </center>
+            )}
         </div>
     )
 }
