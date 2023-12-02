@@ -1,10 +1,10 @@
 // src/SignUp.js
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Form from './SignInForm'
 import AuthForm from './userAuth'
 
-function SignIn(props) {
+function SignIn() {
     const [found, setFound] = useState(true)
     const [user, setUser] = useState(undefined)
     const [code_err, setCodeErr] = useState(false)

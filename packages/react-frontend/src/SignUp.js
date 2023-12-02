@@ -1,7 +1,6 @@
 // src/SignUp.js
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Table from './Table'
 import Form from './CreateUserForm'
 
 function SignUp() {

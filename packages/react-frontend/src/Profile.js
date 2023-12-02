@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-function Profile(props) {
+function Profile() {
     const navigate = useNavigate()
 
     function logOut() {

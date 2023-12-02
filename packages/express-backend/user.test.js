@@ -1,3 +1,5 @@
+/*file for testing backend auxiliary functions that handle mongoose
+ *API calls */
 import mut from './user-services.js' // MUT = Module Under Test
 import mongoose from 'mongoose'
 

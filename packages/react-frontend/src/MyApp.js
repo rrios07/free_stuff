@@ -1,6 +1,5 @@
 // src/MyApp.js
 import React, { useState, useEffect } from 'react'
-import Table from './Table'
 import Form from './CreateUserForm'
 import Home from './HomePage.js'
 import Post from './Post.js'
