@@ -1,5 +1,18 @@
-# free_stuff
+# free Stuff SLO App
+This is a simple web app to allow students and non-students in the SLO area to post any free items they would like to give away for free. 
+Our app only allows students to claim free items, but allows anyone to give items away. The goal of this app is to help college students
+find the essentials they need for free to remove stress from their lives, and to allow anyone to give back to the SLO community in a tractable
+and fulfilling way. This app is a work in progress, but this repo represents it's current state. 
 
+A link to our continuously deployed application can be found here: https://nice-pebble-0c243501e.4.azurestaticapps.net/
+
+The draw.io link to our UML diagram is here: https://app.diagrams.net/#Hrrios07%2Ffree_stuff%2Fmain%2Ffree_stuff.drawio
+
+Additionally, the UML diagram with some notes about it can be found in the 'UML.md' file in the top-level of this repository.
+
+The link to our Figma project can be found here: https://www.figma.com/file/2etrsDlyBIzF1vAnrhIN9W/Figma-to-HTML-(Community)?type=design&mode=design
+
+# Future Dev Info
 Setting Up Prettier:
 
 1. npm install prettier in the root directory of the project

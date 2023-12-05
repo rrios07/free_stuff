@@ -28,7 +28,7 @@ function MyApp() {
 
     function postUser(person) {
         const promise = fetch(
-            'Https://free-stuff-slo.azurewebsites.net/users',
+            'https://free-stuff-slo.azurewebsites.net/users',
             {
                 method: 'POST',
                 headers: {
@@ -54,7 +54,7 @@ function MyApp() {
 
     function submitPost(postData) {
         const promise = fetch(
-            'Https://free-stuff-slo.azurewebsites.net/posts',
+            'https://free-stuff-slo.azurewebsites.net/posts',
             {
                 method: 'POST',
                 headers: {
@@ -70,7 +70,7 @@ function MyApp() {
     function deleteUser(index) {
         const person = characters[index]
         const promise = fetch(
-            `Http://free-stuff-slo.azurewebsites.net/users/${person._id}`,
+            `https://free-stuff-slo.azurewebsites.net/users/${person._id}`,
             {
                 method: 'DELETE',
                 headers: {

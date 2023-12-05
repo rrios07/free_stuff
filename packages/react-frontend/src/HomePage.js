@@ -4,9 +4,11 @@ import { useNavigate } from 'react-router-dom'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import Form from './SignInForm'
 import SignIn from './SignIn'
+import SignUp from './SignUp'
 import Post from './Post'
 import PostForm from './PostForm'
 import SearchResults from './SearchResults'
+import Profile from './Profile'
 
 function FunctionButton(props) {
     const val = props.val
@@ -87,10 +89,11 @@ function Home(props) {
                 </div>
                 <Routes>
                     <Route path="Sign In" element={<SignIn />} />
-                    <Route path="Sign Up" element={props.SignUp} />
+                    <Route path="Sign Up" element={<SignUp />} />
+
                     <Route path="Home" element={props.Home} />
                     <Route path="" element={props.Home} />
-                    {/* <Route path="Profile" element={<Profile />} /> */}
+                    <Route path="Profile" element={<Profile />} />
                     <Route path="Post" element={props.Post} />
                     <Route path="/search/:query" element={<SearchResults />} />
                 </Routes>

@@ -17,7 +17,7 @@ const SearchResults = () => {
             try {
                 // Make a fetch request to your backend API
                 const response = await fetch(
-                    `Https://free-stuff-slo.azurewebsites.net/search?query=${query.trim()}`
+                    `https://free-stuff-slo.azurewebsites.net/search?query=${query.trim()}`
                 )
                 const data = await response.json()
 

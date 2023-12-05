@@ -7,7 +7,6 @@ import nodemailer from 'nodemailer'
 
 const app = express()
 const port = 8000
-//const nodemailer = require('nodemailer')
 
 dotenv.config()
 
