@@ -26,11 +26,9 @@ const SearchResults = () => {
                 const resultsArray = Array.isArray(data) ? data : [data]
 
                 // Update the state with the fetched search results
-                console.log('SearchResult Before:', searchResult)
                 console.log('API Response:', resultsArray)
                 console.log(Array.isArray(resultsArray))
                 setSearchResult(resultsArray)
-                console.log('SearchResult After:', searchResult)
 
                 setLoading(false)
             } catch (error) {
@@ -42,7 +40,7 @@ const SearchResults = () => {
 
         // Call the fetchSearchResults function when the component mounts
         fetchSearchResult()
-    }, [query, searchResult])
+    }, [query])
     // Re-run the effect when the query parameter changes
 
     return (
@@ -54,7 +52,7 @@ const SearchResults = () => {
                 ) : searchResult.length > 0 ? (
                     <ul>
                         {searchResult.map((result) => (
-                            <li key={result.user_name}>
+                            <li key={result.post_id}>
                                 {/* Adjust the rendering based on your API response structure */}
                                 <p>
                                     {result.title}
