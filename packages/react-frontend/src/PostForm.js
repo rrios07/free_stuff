@@ -109,8 +109,7 @@ function PostForm(props) {
                 user_name: userData[0].username,
             }))
             console.log(PostInfo)
-        }
-        else {
+        } else {
             setLoggedIn(false)
         }
     }
@@ -125,7 +124,9 @@ function PostForm(props) {
                 <button onClick={handleButtonClick}>Create Post</button>
             )}
             {!showForm && !loggedIn && buttonClicked && (
-                <p style={{ color: 'red' }}>You must log in to create a Post.</p>
+                <p style={{ color: 'red' }}>
+                    You must log in to create a Post.
+                </p>
             )}
             {showForm && (
                 <form>
@@ -163,18 +164,24 @@ function PostForm(props) {
                                 type="checkbox"
                                 name="Electronic"
                                 checked={PostInfo.categories.Electronic}
-                                onChange={() => updateCheckboxState('Electronic')}
+                                onChange={() =>
+                                    updateCheckboxState('Electronic')
+                                }
                             />
                             Electronic Appliance
                         </label>
                     </div>
-                    <label htmlFor="Pickup and/or Delivery">Pickup and/or Delivery</label>
+                    <label htmlFor="Pickup and/or Delivery">
+                        Pickup and/or Delivery
+                    </label>
                     <div htmlFor="PickupDelivery">
                         <label>
                             <input
                                 type="radio"
                                 value="Pickup"
-                                checked={PostInfo.pickup_or_delivery === 'Pickup'}
+                                checked={
+                                    PostInfo.pickup_or_delivery === 'Pickup'
+                                }
                                 onChange={handleRadioChange}
                             />
                             Pickup
@@ -183,7 +190,9 @@ function PostForm(props) {
                             <input
                                 type="radio"
                                 value="Delivery"
-                                checked={PostInfo.pickup_or_delivery === 'Delivery'}
+                                checked={
+                                    PostInfo.pickup_or_delivery === 'Delivery'
+                                }
                                 onChange={handleRadioChange}
                             />
                             Delivery
@@ -206,7 +215,11 @@ function PostForm(props) {
                         value={PostInfo.Type}
                         onChange={handlePostChange}
                     />
-                    <input type="button" value="Create Post" onClick={submitPostForm} />
+                    <input
+                        type="button"
+                        value="Create Post"
+                        onClick={submitPostForm}
+                    />
                 </form>
             )}
         </div>

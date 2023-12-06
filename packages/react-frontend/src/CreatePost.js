@@ -7,13 +7,16 @@ function createPost() {
     cosnt[(characters, setCharacters)] = useState([])
 
     function postPost(post) {
-        const promise = fetch('Https://free-stuff-slo.azurewebsites.net/posts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(post),
-        })
+        const promise = fetch(
+            'Https://free-stuff-slo.azurewebsites.net/posts',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(post),
+            }
+        )
 
         return promise
     }
@@ -45,13 +48,16 @@ function createPost() {
 
     function deletePost(index) {
         const post = characters[index]
-        const promise = fetch(`Https://free-stuff-slo.azurewebsites.net/posts/${post._id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(person),
-        })
+        const promise = fetch(
+            `Https://free-stuff-slo.azurewebsites.net/posts/${post._id}`,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(person),
+            }
+        )
 
         return promise
     }

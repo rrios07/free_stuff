@@ -25,13 +25,16 @@ function MyApp() {
     }, [])
 
     function postUser(person) {
-        const promise = fetch('Https://free-stuff-slo.azurewebsites.net/users', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(person),
-        })
+        const promise = fetch(
+            'Https://free-stuff-slo.azurewebsites.net/users',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(person),
+            }
+        )
 
         return promise
     }
@@ -48,13 +51,16 @@ function MyApp() {
     }
 
     function submitPost(postData) {
-        const promise = fetch('Https://free-stuff-slo.azurewebsites.net/posts', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(postData),
-        })
+        const promise = fetch(
+            'Https://free-stuff-slo.azurewebsites.net/posts',
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(postData),
+            }
+        )
 
         return promise
     }
@@ -62,13 +68,16 @@ function MyApp() {
     function deleteUser(index) {
         const person = characters[index]
 
-        const promise = fetch(`Https://free-stuff-slo.azurewebsites.net/users/${person._id}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(person),
-        })
+        const promise = fetch(
+            `Https://free-stuff-slo.azurewebsites.net/users/${person._id}`,
+            {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(person),
+            }
+        )
 
         return promise
     }

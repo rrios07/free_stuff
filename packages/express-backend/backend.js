@@ -159,7 +159,7 @@ app.get('/search', (req, res) => {
     // res.json({ results: searchResults })
 
     const post_id = undefined
-    console.log("search call recieved")
+    console.log('search call recieved')
     postFuncs
         .getPost(post_id)
         .then((result) => {

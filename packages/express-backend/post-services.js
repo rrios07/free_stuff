@@ -14,17 +14,17 @@ mongoose
     .catch((error) => console.log(error))
 
 async function getPost(post_id) {
-    console.log("getting post")
+    console.log('getting post')
     let promise
     if (post_id === undefined) {
         try {
-            let query = postModel.find({}); // Initialize the query without conditions
+            let query = postModel.find({}) // Initialize the query without conditions
 
-            const result = await query.exec(); // Execute the query and await the result
+            const result = await query.exec() // Execute the query and await the result
             console.log(result)
-            return result;
+            return result
         } catch (error) {
-            throw error;
+            throw error
         }
     } else if (post_id) {
         promise = findPostById(post_id)

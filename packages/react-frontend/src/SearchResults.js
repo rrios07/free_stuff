@@ -16,7 +16,7 @@ const SearchResults = () => {
         const fetchSearchResult = async () => {
             try {
                 // Make a fetch request to your backend API
-                console.log("Getting Response")
+                console.log('Getting Response')
                 const response = await fetch(
                     `Https://free-stuff-slo.azurewebsites.net/search?query=${query.trim()}`
                 )
@@ -64,7 +64,6 @@ const SearchResults = () => {
                                     From {result.user_name}
                                     <br />
                                     {result.description}
-
                                 </p>
                                 {/* ... other fields ... */}
                             </li>
