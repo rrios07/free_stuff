@@ -42,8 +42,8 @@ function addPost(post) {
     return promise
 }
 
-function findPostByString(str) {
-    return postModel.find({ title: str })
+function findPostById(str) {
+    return postModel.find({ post_id: str })
 }
 
 function findPostByCategories(categories) {
@@ -57,7 +57,7 @@ function deletePostById(id) {
 export default {
     addPost,
     getPost,
-    findPostByString,
+    findPostById,
     findPostByCategories,
     deletePostById,
 }

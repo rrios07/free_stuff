@@ -66,6 +66,7 @@ const SearchResults = () => {
                                     ')'
                                 }
                                 desc={result.description}
+                                post_id={result.post_id}
                             ></Item>
                         ))}
                     </ul>
