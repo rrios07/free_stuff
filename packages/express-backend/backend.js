@@ -8,7 +8,6 @@ import postFuncs from './post-services.js'
 
 const app = express()
 const port = 8000
-//const nodemailer = require('nodemailer')
 
 dotenv.config()
 
