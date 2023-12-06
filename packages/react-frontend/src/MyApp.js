@@ -4,6 +4,8 @@ import Form from './CreateUserForm'
 import Home from './HomePage.js'
 import Post from './Post.js'
 import PostForm from './PostForm.js'
+import Item from './Items.js'
+import { BrowserRouter } from 'react-router-dom'
 
 function MyApp() {
     const [query, setQuery] = useState('')
@@ -108,6 +110,10 @@ function MyApp() {
                 }
                 SignUp={<Form handleSubmit={updateList} />}
             />
+            <BrowserRouter>
+                <Item></Item>
+                <Item></Item>
+            </BrowserRouter>
             {/* <Table
                 characterData={characters}
                 removeCharacter={removeOneCharacter}
