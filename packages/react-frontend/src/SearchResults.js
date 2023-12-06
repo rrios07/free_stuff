@@ -1,8 +1,6 @@
 // src/SearchResults.js
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import SearchBar from './SearchBar'
-// import HomeBody from './HomePage'
 
 const SearchResults = () => {
     const { query } = useParams()
@@ -29,9 +27,9 @@ const SearchResults = () => {
 
                 // Update the state with the fetched search results
                 console.log('SearchResult Before:', searchResult)
-                console.log('API Response:', data)
-                console.log(Array.isArray(data))
-                setSearchResult(data)
+                console.log('API Response:', resultsArray)
+                console.log(Array.isArray(resultsArray))
+                setSearchResult(resultsArray)
                 console.log('SearchResult After:', searchResult)
 
                 setLoading(false)
@@ -44,7 +42,7 @@ const SearchResults = () => {
 
         // Call the fetchSearchResults function when the component mounts
         fetchSearchResult()
-    }, [query])
+    }, [query, searchResult])
     // Re-run the effect when the query parameter changes
 
     return (
@@ -56,7 +54,7 @@ const SearchResults = () => {
                 ) : searchResult.length > 0 ? (
                     <ul>
                         {searchResult.map((result) => (
-                            <li key={result.user_id}>
+                            <li key={result.user_name}>
                                 {/* Adjust the rendering based on your API response structure */}
                                 <p>
                                     {result.title}

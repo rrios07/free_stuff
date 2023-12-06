@@ -153,11 +153,6 @@ app.delete('/users/:id', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
-    // const query = req.query.query // Get the search query from the URL
-    // const searchResults = ['Result 1', 'Result 2', 'Result 3'] // Replace with actual search results
-
-    // res.json({ results: searchResults })
-
     const post_id = undefined
     console.log('search call recieved')
     postFuncs

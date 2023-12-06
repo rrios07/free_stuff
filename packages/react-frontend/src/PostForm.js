@@ -12,7 +12,7 @@ function PostForm(props) {
         },
         description: '',
         pickup_or_delivery: '',
-        user_id: '',
+
         user_name: '',
         post_id: uuidv4(),
     })
@@ -105,7 +105,6 @@ function PostForm(props) {
             const userData = JSON.parse(userDataJson)
             setPostInfo((prevPostInfo) => ({
                 ...prevPostInfo,
-                user_id: userData[0]._id,
                 user_name: userData[0].username,
             }))
             console.log(PostInfo)
