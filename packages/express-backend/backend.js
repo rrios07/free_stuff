@@ -170,6 +170,24 @@ app.get('/search', (req, res) => {
         })
 })
 
+app.get('/search/:query', async (req, res) => {
+    try {
+        const searchString = req.params.query
+
+        // Perform the search
+        const result = await findSimilarPosts(searchString)
+        console.log(result.json())
+
+        // You can then send the result as JSON or render a page, depending on your application logic
+        res.json({ result })
+        console.log(result.json())
+    } catch (error) {
+        // Handle errors appropriately
+        console.error(error)
+        res.status(500).send('Internal Server Error')
+    }
+});
+
 app.get('/posts', (req, res) => {
     const post_id = req.query.post_id
     postFuncs

@@ -42,8 +42,8 @@ function addPost(post) {
     return promise
 }
 
-function findPostByString(str) {
-    return postModel.find({ title: str })
+function findPostById(str) {
+    return postModel.find({ post_id: str })
 }
 
 function findPostByCategories(categories) {
@@ -54,10 +54,20 @@ function deletePostById(id) {
     return postModel.findByIdAndDelete(id)
 }
 
+async function findSimilarPosts(searchString) {
+    const posts = await Post.find(
+        { $text: { $search: `"${searchString}"` } },
+        { score: { $meta: 'textScore' } }
+    ).sort({ score: { $meta: 'textScore' } })
+
+    return posts
+}
+
 export default {
     addPost,
     getPost,
-    findPostByString,
+    findPostById,
     findPostByCategories,
     deletePostById,
+    findSimilarPosts,
 }

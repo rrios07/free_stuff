@@ -49,6 +49,8 @@ const PostSchema = new mongoose.Schema(
     { collection: 'posts_list' }
 )
 
+PostSchema.index({ title: 'text', description: 'text' })
+
 const Post = mongoose.model('Post', PostSchema)
 
 export default Post
