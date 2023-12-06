@@ -61,16 +61,7 @@ function MyApp() {
 
     function deleteUser(index) {
         const person = characters[index]
-        const promise = fetch(
-            `https://free-stuff-slo.azurewebsites.net/users/${person._id}`,
-            {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(person),
-            }
-        )
+
         const promise = fetch(`http://localhost:8000/users/${person._id}`, {
             method: 'DELETE',
             headers: {
