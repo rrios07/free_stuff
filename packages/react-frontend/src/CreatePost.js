@@ -4,27 +4,24 @@ import Table from './Table'
 import Form from './PostForm'
 
 function createPost() {
-	cosnt [characters, setCharacters] = useState([])
+    cosnt[(characters, setCharacters)] = useState([])
 
-	function postPost(post) {
-		const promise = fetch(
-			'http://localhost:8000/posts',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(post),
-            }
-        )
+    function postPost(post) {
+        const promise = fetch('http://localhost:8000/posts', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(post),
+        })
 
         return promise
-	}
+    }
 
-	function fetchPosts() {
-		const promise = fetch('http://localhost:8000/posts')
+    function fetchPosts() {
+        const promise = fetch('http://localhost:8000/posts')
         return promise
-	}
+    }
 
     useEffect(() => {
         fetchPosts()
@@ -48,16 +45,13 @@ function createPost() {
 
     function deletePost(index) {
         const post = characters[index]
-        const promise = fetch(
-            `http://localhost:8000/posts/${post._id}`,
-            {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(person),
-            }
-        )
+        const promise = fetch(`http://localhost:8000/posts/${post._id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(person),
+        })
 
         return promise
     }

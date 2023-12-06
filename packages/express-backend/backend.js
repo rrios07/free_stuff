@@ -160,6 +160,23 @@ app.get('/search', (req, res) => {
     res.json({ results: searchResults })
 })
 
+app.get('/posts', (req, res) => {
+    const post_id = req.query.post_id
+    postFuncs
+        .getPost(post_id)
+        .then((result) => {
+            if (result.length > 0) {
+                console.log(result)
+                res.send(result)
+            } else {
+                res.status(404).send('Resource not found.')
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+})
+
 app.get('/posts/:id', (req, res) => {
     const id = req.params['id'] //or req.params.id
     postFuncs
@@ -168,6 +185,42 @@ app.get('/posts/:id', (req, res) => {
             if (result) {
                 console.log(result)
                 res.send(result)
+            } else {
+                res.status(404).send('Resource not found.')
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+})
+
+app.post('/posts', (req, res) => {
+    const postToAdd = req.body
+    console.log('Attempting to POST Post...')
+    console.log(postToAdd)
+    postFuncs
+        .addPost(postToAdd)
+        .then((post) => {
+            res.status(201).send(JSON.stringify(post))
+        })
+        .catch((error) => {
+            if (error.code == 11000) {
+                res.status(409).send('post already exists.')
+            } else {
+                res.status(403).send('invalid data.')
+            }
+            console.log(error)
+        })
+    console.log('Finished attempt to POST Post...\n\n')
+})
+
+app.delete('/posts:id', (req, res) => {
+    const id = req.params['id'] //or req.params.id
+    postFuncs
+        .deletePostById(id)
+        .then((result) => {
+            if (result) {
+                res.status(204).send()
             } else {
                 res.status(404).send('Resource not found.')
             }

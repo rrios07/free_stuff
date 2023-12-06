@@ -7,16 +7,13 @@ function SignUp() {
     const [characters, setCharacters] = useState([])
 
     function postUser(person) {
-        const promise = fetch(
-            'http://localhost:8000/users',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(person),
-            }
-        )
+        const promise = fetch('http://localhost:8000/users', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(person),
+        })
 
         return promise
     }

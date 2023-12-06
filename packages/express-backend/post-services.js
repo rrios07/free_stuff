@@ -13,23 +13,22 @@ mongoose
     })
     .catch((error) => console.log(error))
 
-
 function getPost(post_id) {
     let promise
-    if (post_id === undefined ) {
+    if (post_id === undefined) {
         promise = postModel.find()
     } else if (post_id) {
         promise = findPostByID(post_id)
 
-    return promise
-}
+        return promise
+    }
 
-function findPostById(id) {
-    return postModel.findById(id)
+    function findPostById(id) {
+        return postModel.findById(id)
+    }
 }
-
 function addPost(post) {
-    console.log(post)
+    // console.log(post)
     // if (user.email.includes('calpoly.edu')) {
     //     user['student'] = true
     // } else {
@@ -54,8 +53,7 @@ function deletePostById(id) {
 
 export default {
     addPost,
-    getPosts,
-    findPostById,
+    getPost,
     findPostByTitle,
     findPostByCategories,
     deletePostById,

@@ -14,7 +14,6 @@ const PostSchema = new mongoose.Schema(
             type: Number,
             required: true,
             trim: true,
-            unique: true,
         },
         user_name: {
             type: String,
@@ -32,12 +31,21 @@ const PostSchema = new mongoose.Schema(
             trim: true,
         },
         categories: {
-            type: [String],
-            required: true,
-            trim: true,
+            Kitchen: {
+                type: Boolean,
+                default: false,
+            },
+            Desk: {
+                type: Boolean,
+                default: false,
+            },
+            Electronic: {
+                type: Boolean,
+                default: false,
+            },
         },
-        pickup_or_dilivery: {
-            type: Number,
+        pickup_or_delivery: {
+            type: String,
             required: true,
             trim: true,
         },
