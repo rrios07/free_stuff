@@ -18,7 +18,7 @@ const SearchResults = () => {
                 // Make a fetch request to your backend API
                 console.log("Getting Response")
                 const response = await fetch(
-                    `http://localhost:3000//search?query=${query.trim()}`
+                    `http://localhost:8000/search?query=${query.trim()}`
                 )
                 console.log(response)
 
@@ -56,10 +56,16 @@ const SearchResults = () => {
                 ) : searchResult.length > 0 ? (
                     <ul>
                         {searchResult.map((result) => (
-                            <li key={result._id}>
+                            <li key={result.user_id}>
                                 {/* Adjust the rendering based on your API response structure */}
-                                <p>{result.title}</p>
-                                <p>{result.description}</p>
+                                <p>
+                                    {result.title}
+                                    <br />
+                                    From {result.user_name}
+                                    <br />
+                                    {result.description}
+
+                                </p>
                                 {/* ... other fields ... */}
                             </li>
                         ))}

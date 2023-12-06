@@ -14,11 +14,13 @@ const PostSchema = new mongoose.Schema(
             type: String,
             required: true,
             trim: true,
+            unique: false,
         },
         user_name: {
             type: String,
             required: true,
             trim: true,
+            unique: false,
         },
         title: {
             type: String,
