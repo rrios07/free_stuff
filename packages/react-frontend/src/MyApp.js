@@ -110,10 +110,6 @@ function MyApp() {
                 }
                 SignUp={<Form handleSubmit={updateList} />}
             />
-            <BrowserRouter>
-                <Item></Item>
-                <Item></Item>
-            </BrowserRouter>
             {/* <Table
                 characterData={characters}
                 removeCharacter={removeOneCharacter}
