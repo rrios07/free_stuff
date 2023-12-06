@@ -1,4 +1,8 @@
 function ItemView(props) {
+    var img_prop = props.img
+    if (img_prop == null)
+        img_prop =
+            'https://cdn.iconscout.com/icon/premium/png-256-thumb/not-available-2685170-2232747.png'
     return (
         <div>
             <h4>{props.name}</h4>

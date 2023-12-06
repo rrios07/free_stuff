@@ -1,8 +1,13 @@
 import { Link } from 'react-router-dom'
 
 function Item(props) {
+    var img_prop = props.img
+    if (img_prop == null)
+        img_prop =
+            'https://cdn.iconscout.com/icon/premium/png-256-thumb/not-available-2685170-2232747.png'
+
     return (
-        <Link to="a">
+        <Link to={'/items/' + props.name + props.user}>
             <div
                 style={{
                     color: 'black',
@@ -20,9 +25,8 @@ function Item(props) {
                         minHeight: '70%',
                         maxHeight: '70%',
                     }}
-                    src={props.img}
-                    alt="Missing."
-                />
+                    src={img_prop}
+                ></img>
                 <p
                     style={{
                         display: 'inline-block',
@@ -30,9 +34,7 @@ function Item(props) {
                 >
                     User: {props.user}
                     <br />
-                    Location: {props.location}
-                    <br />
-                    Condition: {props.condition}
+                    {props.desc}
                 </p>
             </div>
         </Link>

@@ -1,6 +1,10 @@
 // src/SearchResults.js
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import SearchBar from './SearchBar'
+import { Link } from 'react-router-dom'
+import Item from './Items.js'
+// import HomeBody from './HomePage'
 
 const SearchResults = () => {
     const { query } = useParams()
@@ -52,17 +56,17 @@ const SearchResults = () => {
                 ) : searchResult.length > 0 ? (
                     <ul>
                         {searchResult.map((result) => (
-                            <li key={result.post_id}>
-                                {/* Adjust the rendering based on your API response structure */}
-                                <p>
-                                    {result.title}
-                                    <br />
-                                    From {result.user_name}
-                                    <br />
-                                    {result.description}
-                                </p>
-                                {/* ... other fields ... */}
-                            </li>
+                            <Item
+                                name={result.title}
+                                img={result.img}
+                                user={
+                                    result.user_name +
+                                    '(' +
+                                    result.user_id +
+                                    ')'
+                                }
+                                desc={result.description}
+                            ></Item>
                         ))}
                     </ul>
                 ) : (

@@ -3,6 +3,9 @@ import SearchBar from './SearchBar'
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
+import Post from './Post'
+import PostForm from './PostForm'
+import ItemView from './ItemView.js'
 import SearchResults from './SearchResults'
 import Profile from './Profile'
 
@@ -92,6 +95,7 @@ function Home(props) {
                     <Route path="Profile" element={<Profile />} />
                     <Route path="Post" element={props.Post} />
                     <Route path="/search/:query" element={<SearchResults />} />
+                    <Route path="/items/:query" element={<ItemView />} />
                 </Routes>
             </BrowserRouter>
         </div>
