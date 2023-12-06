@@ -30,11 +30,9 @@ const SearchResults = () => {
                 const resultsArray = Array.isArray(data) ? data : [data]
 
                 // Update the state with the fetched search results
-                console.log('SearchResult Before:', searchResult)
-                console.log('API Response:', data)
-                console.log(Array.isArray(data))
-                setSearchResult(data)
-                console.log('SearchResult After:', searchResult)
+                console.log('API Response:', resultsArray)
+                console.log(Array.isArray(resultsArray))
+                setSearchResult(resultsArray)
 
                 setLoading(false)
             } catch (error) {

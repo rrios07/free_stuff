@@ -10,12 +10,6 @@ const PostSchema = new mongoose.Schema(
             trim: true,
             unique: true,
         },
-        user_id: {
-            type: String,
-            required: true,
-            trim: true,
-            unique: false,
-        },
         user_name: {
             type: String,
             required: true,

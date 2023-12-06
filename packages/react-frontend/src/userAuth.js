@@ -7,7 +7,7 @@ function AuthForm(props) {
     const [code, setCode] = useState('')
 
     function handleChange(event) {
-        const { name, value } = event.target
+        const { value } = event.target
         setCode(value)
     }
     function submitForm() {

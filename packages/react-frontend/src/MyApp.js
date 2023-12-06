@@ -8,8 +8,6 @@ import Item from './Items.js'
 import { BrowserRouter } from 'react-router-dom'
 
 function MyApp() {
-    const [query, setQuery] = useState('')
-    const [searchResults, setSearchResults] = useState([])
     const [characters, setCharacters] = useState([])
 
     function fetchUsers() {
@@ -67,37 +65,37 @@ function MyApp() {
         return promise
     }
 
-    function deleteUser(index) {
-        const person = characters[index]
+    // function deleteUser(index) {
+    //     const person = characters[index]
 
-        const promise = fetch(
-            `Https://free-stuff-slo.azurewebsites.net/users/${person._id}`,
-            {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(person),
-            }
-        )
+    //     const promise = fetch(
+    //         `Https://free-stuff-slo.azurewebsites.net/users/${person._id}`,
+    //         {
+    //             method: 'DELETE',
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //             },
+    //             body: JSON.stringify(person),
+    //         }
+    //     )
 
-        return promise
-    }
+    //     return promise
+    // }
 
-    function removeOneCharacter(index) {
-        deleteUser(index)
-            .then((res) => {
-                if (res.status === 204) {
-                    const updated = characters.filter((character, i) => {
-                        return i !== index
-                    })
-                    setCharacters(updated)
-                }
-            })
-            .catch((error) => {
-                console.log(error)
-            })
-    }
+    // function removeOneCharacter(index) {
+    //     deleteUser(index)
+    //         .then((res) => {
+    //             if (res.status === 204) {
+    //                 const updated = characters.filter((character, i) => {
+    //                     return i !== index
+    //                 })
+    //                 setCharacters(updated)
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.log(error)
+    //         })
+    // }
 
     return (
         <div className="container">
