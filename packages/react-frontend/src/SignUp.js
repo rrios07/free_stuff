@@ -11,7 +11,7 @@ function SignUp() {
 
     function postUser(person) {
         const promise = fetch(
-            'http://localhost:8000/users',
+            'Https://free-stuff-slo.azurewebsites.net/users',
             {
                 method: 'POST',
                 headers: {

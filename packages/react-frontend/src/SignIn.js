@@ -14,7 +14,7 @@ function SignIn() {
 
     function getUser(person) {
         const promise = fetch(
-            `http://localhost:8000/users/${person.username}?email=${person.email}`
+            `Https://free-stuff-slo.azurewebsites.net/users/${person.username}?email=${person.email}`
         )
         return promise
     }
