@@ -186,7 +186,7 @@ app.get('/search/:query', async (req, res) => {
         console.error(error)
         res.status(500).send('Internal Server Error')
     }
-});
+})
 
 app.get('/posts', (req, res) => {
     const post_id = req.query.post_id
