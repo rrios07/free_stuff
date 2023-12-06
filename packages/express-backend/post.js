@@ -5,13 +5,13 @@ import mongoose from 'mongoose'
 const PostSchema = new mongoose.Schema(
     {
         post_id: {
-            type: Number,
+            type: String,
             required: true,
             trim: true,
             unique: true,
         },
         user_id: {
-            type: Number,
+            type: String,
             required: true,
             trim: true,
         },

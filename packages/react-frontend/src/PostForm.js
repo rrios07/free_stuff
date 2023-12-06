@@ -1,5 +1,6 @@
 // src/PostForm.js
 import React, { useState } from 'react'
+const { v4: uuidv4 } = require('uuid')
 
 function PostForm(props) {
     const [PostInfo, setPostInfo] = useState({
@@ -11,7 +12,13 @@ function PostForm(props) {
         },
         description: '',
         pickup_or_delivery: '',
+        user_id: '',
+        user_name: '',
+        post_id: uuidv4(),
     })
+    const [showForm, setShowForm] = useState(false)
+    const [loggedIn, setLoggedIn] = useState(false)
+    const [buttonClicked, setButtonClicked] = useState(false)
 
     function handlePostChange(event) {
         const { name, value, type, checked } = event.target
@@ -66,8 +73,8 @@ function PostForm(props) {
 
     const handleRadioChange = (e) => {
         console.log(e)
-        setPostInfo((prevData) => ({
-            ...prevData,
+        setPostInfo((prevPostInfo) => ({
+            ...prevPostInfo,
             pickup_or_delivery: e.target.value,
         }))
     }
@@ -75,7 +82,8 @@ function PostForm(props) {
     function submitPostForm() {
         console.log(PostInfo)
         props.handleSubmit(PostInfo)
-        setPostInfo({
+        setPostInfo((prevPostInfo) => ({
+            ...prevPostInfo,
             title: '',
             categories: {
                 Kitchen: false,
@@ -84,7 +92,27 @@ function PostForm(props) {
             },
             description: '',
             pickup_or_delivery: '',
-        })
+        }))
+    }
+
+    const handleButtonClick = () => {
+        if (!buttonClicked) {
+            setButtonClicked(true)
+        }
+        if (localStorage.getItem('user')) {
+            setShowForm(true)
+            let userDataJson = localStorage.getItem('user')
+            const userData = JSON.parse(userDataJson)
+            setPostInfo((prevPostInfo) => ({
+                ...prevPostInfo,
+                user_id: userData[0]._id,
+                user_name: userData[0].username,
+            }))
+            console.log(PostInfo)
+        }
+        else {
+            setLoggedIn(false)
+        }
     }
 
     const checkboxStyle = {
@@ -92,87 +120,96 @@ function PostForm(props) {
     }
 
     return (
-        <form>
-            Create a new post
-            <label htmlFor="Title">Title</label>
-            <input
-                type="text"
-                name="title"
-                _id="title"
-                value={PostInfo.Title}
-                onChange={handlePostChange}
-            />
-            <label htmlFor="Categories">Categories</label>
-            {/* Include CheckboxForm as part of YourFormComponent */}
-            <div>
-                <label htmlFor="categories" style={checkboxStyle}>
+        <div>
+            {!showForm && !loggedIn && (
+                <button onClick={handleButtonClick}>Create Post</button>
+            )}
+            {!showForm && !loggedIn && buttonClicked && (
+                <p style={{ color: 'red' }}>You must log in to create a Post.</p>
+            )}
+            {showForm && (
+                <form>
+                    Create a new post
+                    <label htmlFor="Title">Title</label>
                     <input
-                        type="checkbox"
-                        name="Kitchen"
-                        checked={PostInfo.categories.Kitchen}
-                        onChange={() => updateCheckboxState('Kitchen')}
+                        type="text"
+                        name="title"
+                        _id="title"
+                        value={PostInfo.Title}
+                        onChange={handlePostChange}
                     />
-                    Kitchen
-                </label>
-                <label style={checkboxStyle}>
+                    <label htmlFor="Categories">Categories</label>
+                    <div>
+                        <label htmlFor="categories" style={checkboxStyle}>
+                            <input
+                                type="checkbox"
+                                name="Kitchen"
+                                checked={PostInfo.categories.Kitchen}
+                                onChange={() => updateCheckboxState('Kitchen')}
+                            />
+                            Kitchen
+                        </label>
+                        <label style={checkboxStyle}>
+                            <input
+                                type="checkbox"
+                                name="Desk"
+                                checked={PostInfo.categories.Desk}
+                                onChange={() => updateCheckboxState('Desk')}
+                            />
+                            Desk
+                        </label>
+                        <label style={checkboxStyle}>
+                            <input
+                                type="checkbox"
+                                name="Electronic"
+                                checked={PostInfo.categories.Electronic}
+                                onChange={() => updateCheckboxState('Electronic')}
+                            />
+                            Electronic Appliance
+                        </label>
+                    </div>
+                    <label htmlFor="Pickup and/or Delivery">Pickup and/or Delivery</label>
+                    <div htmlFor="PickupDelivery">
+                        <label>
+                            <input
+                                type="radio"
+                                value="Pickup"
+                                checked={PostInfo.pickup_or_delivery === 'Pickup'}
+                                onChange={handleRadioChange}
+                            />
+                            Pickup
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                value="Delivery"
+                                checked={PostInfo.pickup_or_delivery === 'Delivery'}
+                                onChange={handleRadioChange}
+                            />
+                            Delivery
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                value="Both"
+                                checked={PostInfo.pickup_or_delivery === 'Both'}
+                                onChange={handleRadioChange}
+                            />
+                            Both
+                        </label>
+                    </div>
+                    <label htmlFor="Description">Description</label>
                     <input
-                        type="checkbox"
-                        name="Desk"
-                        checked={PostInfo.categories.Desk}
-                        onChange={() => updateCheckboxState('Desk')}
+                        type="text"
+                        name="description"
+                        _id="description"
+                        value={PostInfo.Type}
+                        onChange={handlePostChange}
                     />
-                    Desk
-                </label>
-                <label style={checkboxStyle}>
-                    <input
-                        type="checkbox"
-                        name="Electronic"
-                        checked={PostInfo.categories.Electronic}
-                        onChange={() => updateCheckboxState('Electronic')}
-                    />
-                    Electronic Appliance
-                </label>
-            </div>
-            <div htmlFor="PickupDelivery">
-                Pickup and/or Delivery
-                <label>
-                    <input
-                        type="radio"
-                        value="Pickup"
-                        checked={PostInfo.radioOption === 'Pickup'}
-                        onChange={handleRadioChange}
-                    />
-                    Pickup
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        value="Delivery"
-                        checked={PostInfo.radioOption === 'Delivery'}
-                        onChange={handleRadioChange}
-                    />
-                    Delivery
-                </label>
-                <label>
-                    <input
-                        type="radio"
-                        value="Both"
-                        checked={PostInfo.radioOption === 'Both'}
-                        onChange={handleRadioChange}
-                    />
-                    Both
-                </label>
-            </div>
-            <label htmlFor="Description">Description</label>
-            <input
-                type="text"
-                name="description"
-                _id="description"
-                value={PostInfo.Type}
-                onChange={handlePostChange}
-            />
-            <input type="button" value="Post" onClick={submitPostForm} />
-        </form>
+                    <input type="button" value="Create Post" onClick={submitPostForm} />
+                </form>
+            )}
+        </div>
     )
 }
 

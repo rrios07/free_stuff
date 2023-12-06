@@ -16,9 +16,12 @@ const SearchResults = () => {
         const fetchSearchResult = async () => {
             try {
                 // Make a fetch request to your backend API
+                console.log("Getting Response")
                 const response = await fetch(
-                    `http://localhost:8000/search?query=${query.trim()}`
+                    `http://localhost:3000//search?query=${query.trim()}`
                 )
+                console.log(response)
+
                 const data = await response.json()
 
                 // Wrap the single object in an array
@@ -50,8 +53,17 @@ const SearchResults = () => {
                 <h2>Search Results for: {query}</h2>
                 {loading ? (
                     <p>Loading...</p>
-                ) : Array.isArray(searchResult.results) ? (
-                    <ul>{searchResult.results}</ul>
+                ) : searchResult.length > 0 ? (
+                    <ul>
+                        {searchResult.map((result) => (
+                            <li key={result._id}>
+                                {/* Adjust the rendering based on your API response structure */}
+                                <p>{result.title}</p>
+                                <p>{result.description}</p>
+                                {/* ... other fields ... */}
+                            </li>
+                        ))}
+                    </ul>
                 ) : (
                     <p>No results found.</p>
                 )}

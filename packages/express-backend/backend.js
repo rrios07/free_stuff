@@ -153,10 +153,26 @@ app.delete('/users/:id', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
-    const query = req.query.query // Get the search query from the URL
-    const searchResults = ['Result 1', 'Result 2', 'Result 3'] // Replace with actual search results
+    // const query = req.query.query // Get the search query from the URL
+    // const searchResults = ['Result 1', 'Result 2', 'Result 3'] // Replace with actual search results
 
-    res.json({ results: searchResults })
+    // res.json({ results: searchResults })
+
+    const post_id = undefined
+    console.log("search call recieved")
+    postFuncs
+        .getPost(post_id)
+        .then((result) => {
+            if (result.length > 0) {
+                console.log(result)
+                res.send(result)
+            } else {
+                res.status(404).send('Resource not found.')
+            }
+        })
+        .catch((error) => {
+            console.log(error)
+        })
 })
 
 app.get('/posts', (req, res) => {

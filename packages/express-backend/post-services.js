@@ -13,12 +13,21 @@ mongoose
     })
     .catch((error) => console.log(error))
 
-function getPost(post_id) {
+async function getPost(post_id) {
+    console.log("getting post")
     let promise
     if (post_id === undefined) {
-        promise = postModel.find()
+        try {
+            let query = postModel.find({}); // Initialize the query without conditions
+
+            const result = await query.exec(); // Execute the query and await the result
+            console.log(result)
+            return result;
+        } catch (error) {
+            throw error;
+        }
     } else if (post_id) {
-        promise = findPostByID(post_id)
+        promise = findPostById(post_id)
 
         return promise
     }
@@ -28,19 +37,13 @@ function getPost(post_id) {
     }
 }
 function addPost(post) {
-    // console.log(post)
-    // if (user.email.includes('calpoly.edu')) {
-    //     user['student'] = true
-    // } else {
-    //     user['student'] = false
-    // }
     const postToAdd = new postModel(post)
     const promise = postToAdd.save()
     return promise
 }
 
-function findPostByTitle(title) {
-    return postModel.find({ title: title })
+function findPostByString(str) {
+    return postModel.find({ title: str })
 }
 
 function findPostByCategories(categories) {
@@ -54,7 +57,7 @@ function deletePostById(id) {
 export default {
     addPost,
     getPost,
-    findPostByTitle,
+    findPostByString,
     findPostByCategories,
     deletePostById,
 }
