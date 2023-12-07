@@ -5,11 +5,12 @@ import dotenv from 'dotenv'
 dotenv.config()
 mongoose.set('debug', true)
 
-mongoose.connect(process.env.MONGODB_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-})
-//.catch((error) => console.log(error))
+mongoose
+    .connect(process.env.MONGODB_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    })
+    .catch((error) => console.log(error))
 
 function getUsers(username, email) {
     let promise

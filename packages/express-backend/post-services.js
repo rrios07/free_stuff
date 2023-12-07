@@ -26,9 +26,8 @@ async function getPost(post_id) {
         } catch (error) {
             throw error
         }
-    } else if (post_id) {
+    } else {
         promise = findPostById(post_id)
-
         return promise
     }
 
@@ -55,10 +54,12 @@ function deletePostById(id) {
 }
 
 async function findSimilarPosts(searchString) {
-    const posts = await Post.find(
-        { $text: { $search: `"${searchString}"` } },
-        { score: { $meta: 'textScore' } }
-    ).sort({ score: { $meta: 'textScore' } })
+    const posts = await postModel
+        .find(
+            { $text: { $search: `"${searchString}"` } },
+            { score: { $meta: 'textScore' } }
+        )
+        .sort({ score: { $meta: 'textScore' } })
 
     return posts
 }
