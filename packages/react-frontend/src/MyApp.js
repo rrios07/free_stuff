@@ -65,38 +65,6 @@ function MyApp() {
         return promise
     }
 
-    // function deleteUser(index) {
-    //     const person = characters[index]
-
-    //     const promise = fetch(
-    //         `Https://free-stuff-slo.azurewebsites.net/users/${person._id}`,
-    //         {
-    //             method: 'DELETE',
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //             },
-    //             body: JSON.stringify(person),
-    //         }
-    //     )
-
-    //     return promise
-    // }
-
-    // function removeOneCharacter(index) {
-    //     deleteUser(index)
-    //         .then((res) => {
-    //             if (res.status === 204) {
-    //                 const updated = characters.filter((character, i) => {
-    //                     return i !== index
-    //                 })
-    //                 setCharacters(updated)
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             console.log(error)
-    //         })
-    // }
-
     return (
         <div className="container">
             <Home
@@ -107,22 +75,8 @@ function MyApp() {
                     </div>
                 }
                 SignUp={<Form handleSubmit={updateList} />}
+                Home="WELCOME TO SLO FREE STUFF"
             />
-            {/* <Table
-                characterData={characters}
-                removeCharacter={removeOneCharacter}
-            />
-            <p>{'Username and password'}</p>
-            {searchResults.length > 0 ? (
-                <ul>
-                    {searchResults.map((result, index) => (
-                        <li key={index}>{result}</li>
-                    ))}
-                </ul>
-            ) : (
-                <p>No search results found.</p>
-            )}
-            <p>{'Make a Post'}</p> */}
         </div>
     )
 }

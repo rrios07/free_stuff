@@ -7,7 +7,7 @@ function Item(props) {
             'https://cdn.iconscout.com/icon/premium/png-256-thumb/not-available-2685170-2232747.png'
 
     return (
-        <Link to={'/items/' + props.name + props.user}>
+        <Link to={'/items/' + props.post_id}>
             <div
                 style={{
                     color: 'black',
