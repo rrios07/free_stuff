@@ -75,7 +75,7 @@ app.get('/users/:username', (req, res) => {
             .then((result) => {
                 if (result.length > 0) {
                     console.log(result)
-                    //TODO: send an email here
+                    //send randomly generated 4 digit code to email
                     val = Math.floor(1000 + Math.random() * 9000).toString()
                     const data = {
                         from: 'freestuffslo307@gmail.com',
@@ -178,7 +178,6 @@ app.get('/search/:query', async (req, res) => {
         const result = await findSimilarPosts(searchString)
         console.log(result.json())
 
-        // You can then send the result as JSON or render a page, depending on your application logic
         res.json({ result })
         console.log(result.json())
     } catch (error) {

@@ -3,13 +3,6 @@ import { Link } from 'react-router-dom'
 
 const SearchBar = () => {
     const [query, setQuery] = useState('')
-    // const navigate = useNavigate();
-
-    // const handleSearch = async () => {
-    //     if (query.trim() !== '') {
-    //         navigate('/search/${query}');
-    //     }
-    // }
 
     return (
         <div style={{ display: 'flex', alignItems: 'center' }}>

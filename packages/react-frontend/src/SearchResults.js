@@ -1,10 +1,7 @@
 // src/SearchResults.js
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import SearchBar from './SearchBar'
-import { Link } from 'react-router-dom'
 import Item from './Items.js'
-// import HomeBody from './HomePage'
 
 const SearchResults = () => {
     const { query } = useParams()
