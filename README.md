@@ -11,6 +11,7 @@ The draw.io link to our UML diagram is here: https://app.diagrams.net/#Hrrios07%
 Additionally, the UML diagram with some notes about it can be found in the 'UML.md' file in the top-level of this repository.
 
 The link to our Figma project can be found here: https://www.figma.com/file/2etrsDlyBIzF1vAnrhIN9W/Figma-to-HTML-(Community)?type=design&mode=design
+This Figma board was last updated on November 1st, 2023.
 
 # Future Dev Info
 Setting Up Prettier:
