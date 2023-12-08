@@ -28,7 +28,6 @@ function SignIn() {
 
     function code_auth(input_code) {
         //have user input email code
-        console.log(input_code)
         let code_int = Number(input_code)
         if (code_int === code) {
             console.log('correct code')
@@ -36,7 +35,6 @@ function SignIn() {
                 .then((res) => (res.status === 200 ? res.json() : undefined))
                 .then((json) => {
                     if (json) {
-                        console.log(json)
                         localStorage.setItem('user', JSON.stringify(json)) //store logged in username
                         navigate('../Profile')
                     } else {
@@ -59,12 +57,10 @@ function SignIn() {
             .then((res) => (res.status === 200 ? res.json() : undefined))
             .then((json) => {
                 if (json) {
-                    console.log(json)
                     setFound(true)
                     //TODO in Sprint 3: redirect to a new page for email verification
                     setRedir(true)
                     setCode(json)
-                    console.log(code)
                     setUser(person)
                 } else {
                     //404 error
